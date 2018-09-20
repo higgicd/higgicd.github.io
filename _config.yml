@@ -1,9 +1,9 @@
 theme: jekyll-theme-minimal
-title: GitHub pages template
+title: Christopher D. Higgins
 description: A simple template based on minimal jekyll theme
-show_downloads: True
+show_downloads: False
 navigation:
   - title: Home
     url: /
-  - title: Setup
-    url: setup
+  - title: Research
+    url: research
