@@ -1,7 +1,6 @@
 theme: jekyll-theme-minimal
 title: Christopher D. Higgins
 description: A simple template based on minimal jekyll theme
-show_downloads: False
 navigation:
   - title: Home
     url: /
