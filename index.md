@@ -17,10 +17,7 @@ Spatial econometrics is the intersection of spatial analysis and economics. Usin
 ## Built environment and urban morphologies
 
 <img align="left" src="https://higgicd.github.io/assets/img/Fig1.jpg" height="200" title="TOD_Toronto"/>
-My primary research and teaching interests are in spatio-temporal analyses and modelling, urban geo-informatics, and Smart City planning and development.
-<br/>
-<br/>
-<br/>
+The combination of world population growth and urbanization, the spread of information communication technologies, and the increasing availability of spatio-temporal urban big data has enabled new opportunities to examine urban complexity. My research seeks to measure this complexity and better understand how the morphologies of urban built environments shape social, economic, and environmental sustainability.
 <br/>
 <br/>
 <br/>
