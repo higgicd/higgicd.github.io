@@ -18,4 +18,4 @@ See my [Research](./research.md), [Projects](./projects.md) and [Google Scholar 
 # What's New
 
 <img align="left" src="https://higgicd.github.io/assets/img/Fig1.jpg" height="250" title="TOD_Toronto"/>
-Our paper *Rapid transit, transit-oriented development, and the contextual sensitivity of land value uplift in Toronto* was recently published in *Urban Studies*. This paper examines the land value uplift effects associated with accessibility to rapid transit in different transit-oriented development contexts. Paper available at DOI [10.1177/0042098017712680](https://doi.org/10.1177/0042098017712680)
+Our paper *Rapid transit, transit-oriented development, and the contextual sensitivity of land value uplift in Toronto* was recently published in *Urban Studies*. Using real estate transaction data and spatial econometric methods, this paper examines the land value uplift effects associated with accessibility to rapid transit in different transit-oriented development contexts. Paper available at DOI [10.1177/0042098017712680](https://doi.org/10.1177/0042098017712680)
