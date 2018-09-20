@@ -11,6 +11,9 @@ I am a quantitative geographer, urban informatician, and planner whose work uses
 
 | ![TOD_Toronto](https://higgicd.github.io/assets/img/Fig1.jpg) | I am a quantitative geographer, urban informatician, and planner whose work uses GIS/GIScience to better understand the dynamics of complex urban systems |
 
+
+| I am text to the left  | ![TOD_Toronto](https://higgicd.github.io/assets/img/Fig1.jpg) |
+
 ## Built environment and urban morphologies
 ## Accessibility and travel behaviour
 ## Land value uplift and capture
