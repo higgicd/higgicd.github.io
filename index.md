@@ -88,5 +88,6 @@ My primary research and teaching interests are in spatio-temporal analyses and m
 <br/>
 <br/>
 <br/>
+<br/>
 
 See my [Research](./research.md) and Google Scholar profile for more information. I encourage any students, researchers, or practitioners interested in these research areas to get in touch.
