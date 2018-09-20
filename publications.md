@@ -9,7 +9,7 @@ Ferguson, M.R., Mohamed, M., **Higgins, C.D.**, Abotalebi, E., & Kanaroglou, P.S
 
 Réquia, W., **Higgins, C.D.**, Adams, M.D., Mohamed, M., & Koutrakis, P. (2018). The Health Impacts of Weekday Traffic: A Health Risk Assessment of PM2.5 Emissions during Congested Periods. *Environment International*. 111, 164-176. DOI: [10.1016/j.envint.2017.11.025](https://doi.org/10.1016/j.envint.2017.11.025)
 
-**Higgins, C.D.** & Kanaroglou, P.S. (2017). Rapid Transit, Transit-Oriented Development, and the Contextual Sensitivity of Land Value Uplift in Toronto. *Urban Studies*. 55 (10), 2197-2225. DOI: [10.1177/0042098017712680](https://doi.org/10.1177/0042098017712680)
+**Higgins, C.D.** & Kanaroglou, P.S. (2018). Rapid Transit, Transit-Oriented Development, and the Contextual Sensitivity of Land Value Uplift in Toronto. *Urban Studies*. 55 (10), 2197-2225. DOI: [10.1177/0042098017712680](https://doi.org/10.1177/0042098017712680)
 
 **Higgins, C.D.**, Mohamed, M., & Ferguson, M.R. (2017). Size Matters: How Vehicle Body Type Affects Consumer Preferences for Electric Vehicles. *Transportation Research Part A: Policy and Practice*. 100, 182-201. DOI: [10.1016/j.tra.2017.04.014](https://doi.org/10.1016/j.tra.2017.04.014)
 
