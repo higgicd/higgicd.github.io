@@ -8,7 +8,7 @@ I am a quantitative geographer, urban informatician, and planner whose work uses
 ## Spatial analysis and econometrics
 
 <img align="left" src="https://higgicd.github.io/assets/img/Fig2.jpg" height="200" title="TOD_Toronto"/>
-My primary research and teaching interests are in spatio-temporal analyses and modelling, urban geo-informatics, and Smart City planning and development.
+Spatial econometrics is the intersection of spatial analysis and economics. Using rich spatial data and spatio-temporal modelling approaches, my research examines economic processes such as utility and willingness to pay for the built environment, accessibility, health, and other characteristics of complex urban areas.
 <br/>
 <br/>
 <br/>
