@@ -10,7 +10,13 @@ I am a quantitative geographer, urban informatician, and planner whose work uses
 <img align="left" src="https://higgicd.github.io/assets/img/Fig1.jpg" width="250" title="TOD_Toronto"/>
 My primary research and teaching interests are in spatio-temporal analyses and modelling, urban geo-informatics, and Smart City planning and development.
 
+
+
 ## Built environment and urban morphologies
+
+<img align="left" src="https://higgicd.github.io/assets/img/Fig1.jpg" width="250" title="TOD_Toronto"/>
+My primary research and teaching interests are in spatio-temporal analyses and modelling, urban geo-informatics, and Smart City planning and development.
+
 ## Accessibility and travel behaviour
 ## Land value uplift and capture
 ## Health and wellbeing
