@@ -1,9 +1,12 @@
 theme: jekyll-theme-minimal
 title: Christopher D. Higgins
-description: Assistant Professor
+description: |
+  Assistant Professor
   The Hong Kong Polytechnic University
 navigation:
   - title: Home
     url: /
-  - title: Research
+  - title: Research and Openings
     url: research
+  - title: Publications
+    url: publications
