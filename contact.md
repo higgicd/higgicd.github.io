@@ -1,10 +1,10 @@
 # Contact
 
-**Christopher Higgins, PhD**
-Assistant Professor
-Department of Land Surveying and Geo-Informatics
-Department of Building and Real Estate
-The Hong Kong Polytechnic University
-
-*email*: christopher.d.higgins@polyu.edu.hk
+**Christopher Higgins, PhD**<br/>
+Assistant Professor<br/>
+Department of Land Surveying and Geo-Informatics<br/>
+Department of Building and Real Estate<br/>
+The Hong Kong Polytechnic University<br/>
+<br/>
+*email*: christopher.d.higgins@polyu.edu.hk<br/>
 *room*: ZS605
