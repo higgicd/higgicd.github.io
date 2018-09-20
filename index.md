@@ -7,7 +7,7 @@ I am a quantitative geographer, urban informatician, and planner whose work uses
 
 ## Spatial analysis and econometrics
 
-<img src="https://higgicd.github.io/assets/img/Fig1.jpg" width="256" height="256" title="TOD_Toronto">
+<img src="https://higgicd.github.io/assets/img/Fig1.jpg" width="256" title="TOD_Toronto">
 
 ## Built environment and urban morphologies
 ## Accessibility and travel behaviour
