@@ -12,6 +12,7 @@ My primary research and teaching interests are in spatio-temporal analyses and m
 \
 \
 \
+
 ## Built environment and urban morphologies
 
 <img align="left" src="https://higgicd.github.io/assets/img/Fig1.jpg" width="250" title="TOD_Toronto"/>
