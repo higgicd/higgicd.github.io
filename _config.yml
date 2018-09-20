@@ -1,7 +1,7 @@
 theme: jekyll-theme-minimal
 title: Christopher D. Higgins
 description: Assistant Professor<br/>Department of Land Surveying & Geo-Informatics<br/>Department of Building and Real Estate<br/>The Hong Kong Polytechnic University
-google_analytics: "UA-126124472-1"
+google_analytics: UA-126124472-1
 navigation:
   - title: Home
     url: /
