@@ -13,4 +13,4 @@ I am a quantitative geographer, urban informatician, and planner whose work uses
 - Geodemographics and demand modelling
 - Urban policy and planning
 
-See my [Research](./research.md) and Google Scholar profile for more information. I encourage any students, researchers, or practitioners interested in these research areas to get in touch.
+See my [Research](./research.md), [Projects](./projects.md) and [Google Scholar profile](https://scholar.google.ca/citations?user=BvBZbXMAAAAJ&hl=en) for more information.
