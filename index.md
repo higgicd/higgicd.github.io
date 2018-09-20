@@ -13,9 +13,6 @@ Spatial econometrics is the intersection of spatial analysis and economics. Usin
 <br/>
 <br/>
 <br/>
-<br/>
-<br/>
-<br/>
 
 ## Built environment and urban morphologies
 
