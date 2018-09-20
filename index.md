@@ -7,10 +7,10 @@ I am a quantitative geographer, urban informatician, and planner whose work uses
 
 ## Spatial analysis and econometrics
 
-<p float="right">
-  <img src="https://higgicd.github.io/assets/img/Fig1.jpg" width="300" title="TOD_Toronto"/>  
-  My primary research and teaching interests are in spatio-temporal analyses and modelling, urban geo-informatics, and Smart City planning and development. 
-</p>
+
+<img align="right" src="https://higgicd.github.io/assets/img/Fig1.jpg" width="300" title="TOD_Toronto"/>  
+My primary research and teaching interests are in spatio-temporal analyses and modelling, urban geo-informatics, and Smart City planning and development. 
+
 
 
 
