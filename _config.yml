@@ -1,7 +1,8 @@
 theme: jekyll-theme-minimal
 title: Christopher D. Higgins
-description: "Assistant Professor /
-  The Hong Kong Polytechnic University"
+description: >
+  this is my very very very
+  long string
 navigation:
   - title: Home
     url: /
