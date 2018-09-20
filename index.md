@@ -19,7 +19,7 @@ My primary research and teaching interests are in spatio-temporal analyses and m
 
 ## Built environment and urban morphologies
 
-<img align="left" src="https://higgicd.github.io/assets/img/Fig1.jpg" height="200" title="TOD_Toronto"/>
+<img align="left" src="https://higgicd.github.io/assets/img/dc_metro.jpg" height="200" title="TOD_Toronto"/>
 My primary research and teaching interests are in spatio-temporal analyses and modelling, urban geo-informatics, and Smart City planning and development.
 <br/>
 <br/>
@@ -79,7 +79,7 @@ My primary research and teaching interests are in spatio-temporal analyses and m
 
 ## Urban policy and planning
 
-<img align="left" src="https://higgicd.github.io/assets/img/Fig1.jpg" height="200" title="TOD_Toronto"/>
+<img align="left" src="https://higgicd.github.io/assets/img/Fig5.jpg" height="200" title="TOD_Toronto"/>
 My primary research and teaching interests are in spatio-temporal analyses and modelling, urban geo-informatics, and Smart City planning and development.
 <br/>
 <br/>
