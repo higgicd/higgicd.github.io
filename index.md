@@ -11,6 +11,9 @@ I am a quantitative geographer, urban informatician, and planner whose work uses
 My primary research and teaching interests are in spatio-temporal analyses and modelling, urban geo-informatics, and Smart City planning and development.<br/>
 
 
+
+
+
 <br/>
 
 ## Built environment and urban morphologies
