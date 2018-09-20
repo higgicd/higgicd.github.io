@@ -15,6 +15,7 @@ My primary research and teaching interests are in spatio-temporal analyses and m
 <br/>
 <br/>
 <br/>
+<br/>
 
 ## Built environment and urban morphologies
 
