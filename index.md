@@ -22,6 +22,7 @@ Our paper *Rapid transit, transit-oriented development, and the contextual sensi
 <br/>
 <br/>
 <br/>
+<br/>
 
 ### The $1.3B Health Impacts of Weekday Traffic
 <img align="left" src="https://higgicd.github.io/assets/img/Fig3.jpg" height="250" title="TOD_Toronto"/>
