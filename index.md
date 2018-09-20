@@ -7,7 +7,7 @@ I am a quantitative geographer, urban informatician, and planner whose work uses
 
 ## Spatial analysis and econometrics
 
-<img align="left" src="https://higgicd.github.io/assets/img/Fig6.jpg" height="200" title="TOD_Toronto"/>
+<img align="left" src="https://higgicd.github.io/assets/img/Fig2.jpg" height="200" title="TOD_Toronto"/>
 My primary research and teaching interests are in spatio-temporal analyses and modelling, urban geo-informatics, and Smart City planning and development.
 <br/>
 <br/>
@@ -31,7 +31,7 @@ My primary research and teaching interests are in spatio-temporal analyses and m
 
 ## Accessibility and travel behaviour
 
-<img align="left" src="https://higgicd.github.io/assets/img/LRT.jpg" height="200" title="TOD_Toronto"/>
+<img align="left" src="https://higgicd.github.io/assets/img/traffic.jpg" height="200" title="TOD_Toronto"/>
 My primary research and teaching interests are in spatio-temporal analyses and modelling, urban geo-informatics, and Smart City planning and development.
 <br/>
 <br/>
@@ -43,7 +43,7 @@ My primary research and teaching interests are in spatio-temporal analyses and m
 
 ## Land value uplift and capture
 
-<img align="left" src="https://higgicd.github.io/assets/img/dc_metro.jpg" height="200" title="TOD_Toronto"/>
+<img align="left" src="https://higgicd.github.io/assets/img/Fig6.jpg" height="200" title="TOD_Toronto"/>
 My primary research and teaching interests are in spatio-temporal analyses and modelling, urban geo-informatics, and Smart City planning and development.
 <br/>
 <br/>
@@ -79,7 +79,7 @@ My primary research and teaching interests are in spatio-temporal analyses and m
 
 ## Urban policy and planning
 
-<img align="left" src="https://higgicd.github.io/assets/img/Fig5.jpg" height="200" title="TOD_Toronto"/>
+<img align="left" src="https://higgicd.github.io/assets/img/LRT.jpg" height="200" title="TOD_Toronto"/>
 My primary research and teaching interests are in spatio-temporal analyses and modelling, urban geo-informatics, and Smart City planning and development.
 <br/>
 <br/>
