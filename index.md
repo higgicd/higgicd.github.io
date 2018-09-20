@@ -13,7 +13,7 @@ I am a quantitative geographer, urban informatician, and planner whose work uses
 - Geodemographics and demand modelling
 - Urban policy and planning
 
-See my [Research](./research.md), [Projects](./projects.md) and [Google Scholar profile](https://scholar.google.ca/citations?user=BvBZbXMAAAAJ&hl=en) for more information.
+See my [Research Projects](./research.md) and [Publications](./publications.md) for more information. See also my [Google Scholar](https://scholar.google.ca/citations?user=BvBZbXMAAAAJ&hl=en), [ResearchGate](https://www.researchgate.net/profile/Christopher_Higgins3), and [ORCID](https://orcid.org/0000-0002-3551-7750) profiles.
 
 # What's New
 
