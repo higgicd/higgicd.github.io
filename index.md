@@ -15,7 +15,7 @@ I am a quantitative geographer, urban informatician, and planner whose work uses
 
 See my [Research Projects](./research.md) and [Publications](./publications.md) for more information, as well as my [Google Scholar](https://scholar.google.ca/citations?user=BvBZbXMAAAAJ&hl=en), [ResearchGate](https://www.researchgate.net/profile/Christopher_Higgins3), and [ORCID](https://orcid.org/0000-0002-3551-7750) profiles.
 
-# What's New
+# Recent Work
 ### Land Value Uplift and TOD in Toronto
 <img align="left" src="https://higgicd.github.io/assets/img/Fig1.jpg" height="250" title="TOD_Toronto"/>
 Our paper *Rapid transit, transit-oriented development, and the contextual sensitivity of land value uplift in Toronto* was recently published in *Urban Studies*. Using real estate transaction data and spatial econometric methods, this paper examines the land value uplift effects associated with accessibility to rapid transit in different transit-oriented development contexts. Paper available at DOI [10.1177/0042098017712680](https://doi.org/10.1177/0042098017712680).
