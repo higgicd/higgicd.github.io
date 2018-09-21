@@ -28,3 +28,14 @@ Our paper *Rapid transit, transit-oriented development, and the contextual sensi
 ### The $1.3B Health Impacts of Weekday Traffic
 <img align="left" src="https://higgicd.github.io/assets/img/Fig3.jpg" height="250" title="PM25_Toronto"/>
 By producing high levels of harmful emissions, traffic congestion has a substantial impact on human health and the economy. Our results showed an impact of 206 (95%: 116; 297) deaths per year from all-cause mortality and 119 (95%: 67; 171) deaths per year from cardiovascular mortality associated with PM2.5 emissions from traffic congestion in the Toronto region. Paper available in *Environment International* at DOI [10.1016/j.envint.2017.11.025](https://doi.org/10.1016/j.envint.2017.11.025).
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+### Mindset and Mindshare for Electric Vehicles
+### The $1.3B Health Impacts of Weekday Traffic
+<img align="left" src="https://higgicd.github.io/assets/img/ev_mindshare.jpg" height="250" title="EV_Mindshare"/>
+The study presents a multi-group structural equation modelling exercise to identify differences in the mindset of individuals towards electric vehicles (EVs) across seven vehicle body types in Canada. The study utilizes a sample of 15,392 households and grounds the psychographic orientation of potential EV adopters on an extended version of the Theory of Planned Behaviour. Results indicate that the psychographic orientation and the SED traits of potential adopters of different EV body types are significantly different, with particular standouts in the luxury and pickup truck classes. Paper available in *Transportation Research Part A: Policy and Practice* at DOI [10.1016/j.tra.2018.05.011](https://doi.org/10.1016/j.tra.2018.05.011)
+
