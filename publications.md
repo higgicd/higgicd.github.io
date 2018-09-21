@@ -5,7 +5,7 @@ Mohamed, M., **Higgins, C.D.**, Ferguson, M.R. & Réquia, W.J. (2018). The influ
 
 Réquia, W., Mohamed, M., **Higgins, C.D.**, Arain, A. & Ferguson, M.R. (2018). How Clean are Electric Vehicles? Evidence-based Review of the Effects of Electric Mobility on Air Pollutants, Greenhouse Gas Emissions and Human Health. *Atmospheric Environment*. 186, 64-77. DOI: [10.1016/j.atmosenv.2018.04.040](https://doi.org/10.1016/j.atmosenv.2018.04.040)
 
-Ferguson, M.R., Mohamed, M., **Higgins, C.D.**, Abotalebi, E., & Kanaroglou, P.S. (2018). How Open are Canadian Households to Electric Vehicles? A National Latent Class Choice Analysis with Willingness-To-Pay and Metropolitan Characterization. *Transportation Research Part D: Transport and Environment*. DOI: [10.1016/j.trd.2017.12.006](https://doi.org/10.1016/j.trd.2017.12.006)
+Ferguson, M.R., Mohamed, M., **Higgins, C.D.**, Abotalebi, E., & Kanaroglou, P.S. (2018). How Open are Canadian Households to Electric Vehicles? A National Latent Class Choice Analysis with Willingness-To-Pay and Metropolitan Characterization. *Transportation Research Part D: Transport and Environment*. 58, 208-224. DOI: [10.1016/j.trd.2017.12.006](https://doi.org/10.1016/j.trd.2017.12.006)
 
 Réquia, W., **Higgins, C.D.**, Adams, M.D., Mohamed, M., & Koutrakis, P. (2018). The Health Impacts of Weekday Traffic: A Health Risk Assessment of PM2.5 Emissions during Congested Periods. *Environment International*. 111, 164-176. DOI: [10.1016/j.envint.2017.11.025](https://doi.org/10.1016/j.envint.2017.11.025)
 
