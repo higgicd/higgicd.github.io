@@ -24,6 +24,8 @@ Using an input pedestrian network and a Digital Elevation/Terrain Model (DEM/DTM
 <br/>
 <br/>
 <br/>
+<br/>
+<br/>
 
 ### Land Value Uplift and TOD in Toronto
 <img align="left" src="https://higgicd.github.io/assets/img/Fig1.jpg" height="250" title="TOD_Toronto"/>
