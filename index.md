@@ -18,7 +18,8 @@ See my [Research Projects](./research.md) and [Publications](./publications.md) 
 # Recent Work
 ### 3D Network Toolbox
 <img align="left" src="https://higgicd.github.io/assets/img/3D_NetworkToolbox.jpg" height="250" title="3D_Network"/>
-Using an input pedestrian network and a Digital Elevation/Terrain Model (DEM/DTM), this Python Toolbox for ArcGIS 10.x implements Tobler’s Hiking Function to enable the calculation of slope-aware travel times for walking travel on a 3D network.
+Using an input pedestrian network and a Digital Elevation/Terrain Model (DEM/DTM), this Python Toolbox for ArcGIS 10.x implements Tobler’s Hiking Function to enable the calculation of slope-aware travel times for walking travel on a 3D network.  
+  
 
 ### Land Value Uplift and TOD in Toronto
 <img align="left" src="https://higgicd.github.io/assets/img/Fig1.jpg" height="250" title="TOD_Toronto"/>
