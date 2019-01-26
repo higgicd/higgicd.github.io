@@ -16,6 +16,10 @@ I am a quantitative geographer, urban informatician, and planner whose work uses
 See my [Research Projects](./research.md) and [Publications](./publications.md) for more information, as well as my [Google Scholar](https://scholar.google.ca/citations?user=BvBZbXMAAAAJ&hl=en), [ResearchGate](https://www.researchgate.net/profile/Christopher_Higgins3), and [ORCID](https://orcid.org/0000-0002-3551-7750) profiles.
 
 # Recent Work
+### 4D Econometrics in High Density and Topographically-rich Cities
+<img align="left" src="https://higgicd.github.io/assets/img/4DEconometrics.jpg" height="250" title="4D_Econometrics"/>
+This paper makes several innovations in methods and techniques that respond to the econometric challenges involved in conducting research in high density, topographically-rich cities. It is the first to calculate slope-aware measures of walkable accessibility on a 3D pedestrian network; it proposes a new Spherical Distance Weights method for capturing horizontal and vertical spatial association among observations in 3D space; and combines these weights with measures of temporal distance for a 4D approach that accounts for relations among observations in space and time. Using the example of the West Island Line in Hong Kong, the paper uses a quasi-experimental study design and finds property values increased up to 41% after new stations opened. Paper available in *Landscape and Urban Planning* at DOI [10.1016/j.landurbplan.2018.12.011](https://doi.org/10.1016/j.landurbplan.2018.12.011).
+
 ### 3D Network Toolbox
 <img align="left" src="https://higgicd.github.io/assets/img/3D_NetworkToolbox.jpg" height="250" title="3D_Network"/>
 Using an input pedestrian network and a Digital Elevation/Terrain Model (DEM/DTM), the [3D Network Python Toolbox](https://github.com/higgicd/3D_Network_Toolbox) for ArcGIS 10.x implements Tobler’s Hiking Function to enable the calculation of slope-aware travel times for walking travel on a 3D network.
