@@ -1,6 +1,8 @@
 # Publications
 ## Journal Articles
 
+Higgins, C.D. A 4D spatio-temporal approach to modelling land value uplift from rapid transit in high density and topographically-rich cities. *Landscape and Urban Planning*. *185*, 68-82. DOI: [10.1016/j.landurbplan.2018.12.011](https://doi.org/10.1016/j.landurbplan.2018.12.011)
+
 Mohamed, M., **Higgins, C.D.**, Ferguson, M.R. & Réquia, W.J. (2018). The influence of vehicle body type in shaping behavioural intention to acquire electric vehicles: A multi-group structural equation approach. *Transportation Research Part A: Policy and Practice*. *118*, 54-72. DOI: [10.1016/j.tra.2018.05.011](https://doi.org/10.1016/j.tra.2018.05.011)
 
 Réquia, W., Mohamed, M., **Higgins, C.D.**, Arain, A. & Ferguson, M.R. (2018). How Clean are Electric Vehicles? Evidence-based Review of the Effects of Electric Mobility on Air Pollutants, Greenhouse Gas Emissions and Human Health. *Atmospheric Environment*. *186*, 64-77. DOI: [10.1016/j.atmosenv.2018.04.040](https://doi.org/10.1016/j.atmosenv.2018.04.040)
