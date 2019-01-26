@@ -2,7 +2,7 @@
 ## 2018-2019 (HK PolyU)
 - BRE217 Planning and Development
 - LSGI2B01 Map Reading and Interpretation
-- LSGI5XX Urban Informatics
+- [LSGI545 Urban Informatics](https://github.com/higgicd/LSGI545_2019)
 
 ## 2017-2018 (HK PolyU)
 - BRE217 Planning and Development
