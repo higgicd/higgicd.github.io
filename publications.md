@@ -1,6 +1,10 @@
 # Publications
 ## Journal Articles
 
+**Higgins, C.D.** (2019). Accessibility toolbox for R and ArcGIS. *Transport Findings*. DOI: [10.32866/8416](https://doi.org/10.32866/8416)
+
+**Higgins, C.D.**, Adams, M. D., Réquia, W. J., & Mohamed, M. (2019). Accessibility, air pollution, and congestion: Capturing spatial trade-offs from agglomeration in the property market. *Land Use Policy*, *84*, 177-191. DOI: [10.1016/j.landusepol.2019.03.002](https://doi.org/10.1016/j.landusepol.2019.03.002)
+
 **Higgins, C.D.** (2019). A 4D spatio-temporal approach to modelling land value uplift from rapid transit in high density and topographically-rich cities. *Landscape and Urban Planning*. *185*, 68-82. DOI: [10.1016/j.landurbplan.2018.12.011](https://doi.org/10.1016/j.landurbplan.2018.12.011)
 
 Mohamed, M., **Higgins, C.D.**, Ferguson, M.R. & Réquia, W.J. (2018). The influence of vehicle body type in shaping behavioural intention to acquire electric vehicles: A multi-group structural equation approach. *Transportation Research Part A: Policy and Practice*. *118*, 54-72. DOI: [10.1016/j.tra.2018.05.011](https://doi.org/10.1016/j.tra.2018.05.011)
