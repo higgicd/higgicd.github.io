@@ -17,7 +17,7 @@ See my [Research Projects](./research.md) and [Publications](./publications.md) 
 
 # Recent Work
 ### Accessibility Toolbox for R and ArcGIS
-<img align="left" src="https://higgicd.github.io/assets/img/AccessibilityToolbox.jpg" height="250" title="AccessTool"/>
+<img align="left" src="https://higgicd.github.io/assets/img/AccessibilityToolbox.jpg" width="900" title="AccessTool"/>
 This paper details a new Accessibility Toolbox for R and ArcGIS that includes a Python tool for conducting accessibility analyses and an interactive R Notebook that enables the visualization and customization of impedance functions and parameters. Using this toolbox, researchers and practitioners can simplify their accessibility analysis workflow and make better decisions about the specification and customization of travel impedance for their study context. Paper available in *Transport Findings* at DOI [10.32866/8416](https://doi.org/10.32866/8416)
 <br/>
 <br/>
