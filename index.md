@@ -16,6 +16,12 @@ I am a quantitative geographer, urban informatician, and planner whose work uses
 See my [Research Projects](./research.md) and [Publications](./publications.md) for more information, as well as my [Google Scholar](https://scholar.google.ca/citations?user=BvBZbXMAAAAJ&hl=en), [ResearchGate](https://www.researchgate.net/profile/Christopher_Higgins3), [ORCID](https://orcid.org/0000-0002-3551-7750), and [Twitter](https://twitter.com/higgicd) profiles.
 
 # Recent Work
+### Accessibility Toolbox for R and ArcGIS
+<img align="left" src="https://higgicd.github.io/assets/img/AccessibilityToolbox.jpg" height="275" title="AccessTool"/>
+This paper details a new Accessibility Toolbox for R and ArcGIS that includes a Python tool for conducting accessibility analyses and an interactive R Notebook that enables the visualization and customization of impedance functions and parameters. Using this toolbox, researchers and practitioners can simplify their accessibility analysis workflow and make better decisions about the specification and customization of travel impedance for their study context. Paper available in *Transport Findings* at DOI [10.32866/8416](https://doi.org/10.32866/8416)
+<br/>
+<br/>
+
 ### Spatial trade-offs from Accessibility, Air Pollution, and Congestion
 <img align="left" src="https://higgicd.github.io/assets/img/access_airpol.jpg" height="275" title="4D_Econometrics"/>
 Agglomeration is the foundation of the economic geography of cities. Agglomeration can bring accessibility benefits, but also negative externalities such as increased exposure to harmful emissions, and both of these are impacted by congestion. This research employs real estate transaction data to examine whether spatial trade-offs occur between the benefits and negative impacts of agglomeration in the single-detached property market around two highways in Hamilton, Canada. Results suggest that households value high levels of accessibility in locations that do not experience the corresponding environmental costs from traffic. In contrast, for locations with high access and high exposure, the access benefits of agglomeration are offset by environmental costs. Paper available in *Land Use Policy* at DOI [10.1016/j.landusepol.2019.03.002](https://doi.org/10.1016/j.landusepol.2019.03.002).
