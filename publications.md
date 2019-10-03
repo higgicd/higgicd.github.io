@@ -1,6 +1,8 @@
 # Publications
 ## Journal Articles
 
+Páez, A., **Higgins, C.D.**, & Vivona, S.F. (2019). Demand and level of service inflation in Floating Catchment Area (FCA) methods. *PloS one*, *14*(6). DOI: [https://doi.org/10.1371/journal.pone.0218773](https://doi.org/10.1371/journal.pone.0218773)
+
 **Higgins, C.D.** (2019). Accessibility toolbox for R and ArcGIS. *Transport Findings*. DOI: [10.32866/8416](https://doi.org/10.32866/8416)
 
 **Higgins, C.D.**, Adams, M. D., Réquia, W. J., & Mohamed, M. (2019). Accessibility, air pollution, and congestion: Capturing spatial trade-offs from agglomeration in the property market. *Land Use Policy*, *84*, 177-191. DOI: [10.1016/j.landusepol.2019.03.002](https://doi.org/10.1016/j.landusepol.2019.03.002)
