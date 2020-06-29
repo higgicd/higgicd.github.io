@@ -18,7 +18,7 @@ See my [Research Projects](./research.md) and [Publications](./publications.md) 
 # Recent Work
 ### Multiprocessing now built into the Accessibility Toolbox for ArcGIS Pro
 <img align="left" src="https://higgicd.github.io/assets/img/access_calc_MP.jpg" width="500" title="AccessToolMP"/>
-I have been slowly updating the original Accessibility Toolbox in a few ways since it was published last year. The most important innovations are that the tool is now multiprocessing enabled for ArcGIS Pro, which leads to dramatic savings in computational time. In addition, I have now included an additional tool for calculating origin-destination cost matrices with the same multiprocessing backend. All can be used through the command line or within the GUI. Enjoy! [Accessibility Toolbox](https://github.com/higgicd/Accessibility_Toolbox)
+I have been slowly updating the original Accessibility Toolbox in a few ways since it was published last year. The most important innovations are that the tool is now multiprocessing enabled for ArcGIS Pro, which leads to dramatic savings in computational time. In addition, I have now included an additional tool for calculating origin-destination cost matrices with the same multiprocessing backend. All can be used through the command line or within the GUI. Toolbox available via [Accessibility Toolbox](https://github.com/higgicd/Accessibility_Toolbox).
 <br/>
 
 ### Accessibility Toolbox for R and ArcGIS
