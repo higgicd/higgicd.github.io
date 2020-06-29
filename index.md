@@ -16,6 +16,11 @@ I am a quantitative geographer, urban informatician, and planner whose work uses
 See my [Research Projects](./research.md) and [Publications](./publications.md) for more information, as well as my [Google Scholar](https://scholar.google.ca/citations?user=BvBZbXMAAAAJ&hl=en), [ResearchGate](https://www.researchgate.net/profile/Christopher_Higgins3), [ORCID](https://orcid.org/0000-0002-3551-7750), and [Twitter](https://twitter.com/higgicd) profiles.
 
 # Recent Work
+### Multiprocessing now built into the Accessibility Toolbox for ArcGIS Pro
+<img align="left" src="https://higgicd.github.io/assets/img/access_calc_MP.jpg" width="500" title="AccessToolMP"/>
+I have been slowly updating the original Accessibility Toolbox in a few ways since it was published last year. The most important innovations are that the tool is now multiprocessing enabled for ArcGIS Pro, which leads to dramatic savings in computational time. In addition, I have now included an additional tool for calculating origin-destination cost matrices with the same multiprocessing backend. All can be used through the command line or within the GUI. Enjoy! [Accessibility Toolbox](https://github.com/higgicd/Accessibility_Toolbox)
+<br/>
+
 ### Accessibility Toolbox for R and ArcGIS
 <img align="left" src="https://higgicd.github.io/assets/img/AccessibilityToolbox.jpg" width="900" title="AccessTool"/>
 This paper details a new Accessibility Toolbox for R and ArcGIS that includes a Python tool for conducting accessibility analyses and an interactive R Notebook that enables the visualization and customization of impedance functions and parameters. Using this toolbox, researchers and practitioners can simplify their accessibility analysis workflow and make better decisions about the specification and customization of travel impedance for their study context. Paper available in *Transport Findings* at DOI [10.32866/8416](https://doi.org/10.32866/8416)
