@@ -3,19 +3,22 @@ layout: default
 ---
 # About
 
-I am a quantitative geographer, urban informatician, and planner whose work uses GIS/GIScience to better understand the dynamics of complex urban systems and their link to economic, social, and environmental outcomes. My primary research and teaching interests are in spatio-temporal analyses and modelling, urban geo-informatics, and Smart City planning and development. Application areas to date include:
+I am a quantitative geographer whose research is focused on the relationship between form and function in cities. Using the tools and methods of GIS/geographic data science, I capture and model the physical form and infrastructure of the city, its urban networks and the flows of people, goods, and information they facilitate, and the use of the city as an area or volume for engaging in activities. By providing a window into how the dynamic state of the city impacts and is impacted by social, environmental, and economic processes, my work seeks to better inform policy and planning interventions and promote more sustainable urban outcomes. Research areas to date include spatial and spatio-temporal analyses of:
 
-- Spatial analysis and econometrics
-- Built environment and urban morphologies
+- Urban morphology and urban volumetrics
 - Accessibility and travel behaviour
-- Land value uplift and capture
+- 2D/3D/4D econometrics
 - Health and wellbeing
 - Geodemographics and demand modelling
 - Urban policy and planning
 
-See my [Research Projects](./research.md) and [Publications](./publications.md) for more information, as well as my [Google Scholar](https://scholar.google.ca/citations?user=BvBZbXMAAAAJ&hl=en), [ResearchGate](https://www.researchgate.net/profile/Christopher_Higgins3), [ORCID](https://orcid.org/0000-0002-3551-7750), and [Twitter](https://twitter.com/higgicd) profiles.
+See my ongoing [Research Projects](./research.md) and [Publications](./publications.md) for more information, as well as my [Google Scholar](https://scholar.google.ca/citations?user=BvBZbXMAAAAJ&hl=en), [ResearchGate](https://www.researchgate.net/profile/Christopher_Higgins3), [ORCID](https://orcid.org/0000-0002-3551-7750), and [Twitter](https://twitter.com/higgicd) profiles.
 
 # Recent Work
+### Urban Volumetrics
+<img align="left" src="https://higgicd.github.io/assets/img/Pic3_C.jpg" width="600" title="HK_Compression"/>
+Excited to share our new paper that proposes _Urban Volumetrics_ as a new way of thinking about and analyzing cities as volumetric entities. We argue the urban morphological complexity of 21st-Century cities can be best visualized through a _stratigraphic_ approach that reflects the layers of the city. Next, we propose that volumetric cities can be deconstructed into the five elements of _volumetric density_, _functional mix_, _geometric compaction and _geographic compression_, _complex networks_, and _interaction intensity_ that produces _urban vitality_. To demonstrate this, we perform a preliminary analysis of volumetric accessibility in a test area and compression in Hong Kong. Paper available in [Urban Studies](https://doi.org/10.1177%2F0042098020936970).
+
 ### Multiprocessing now built into the Accessibility Toolbox for ArcGIS Pro
 <img align="left" src="https://higgicd.github.io/assets/img/access_calc_MP.jpg" width="500" title="AccessToolMP"/>
 I have been slowly updating the original Accessibility Toolbox in a few ways since it was published last year. The most important innovations are that the tool is now multiprocessing enabled for ArcGIS Pro, which leads to dramatic savings in computational time. In addition, I have now included an additional tool for calculating origin-destination cost matrices with the same multiprocessing backend. All can be used through the command line or within the GUI. Toolbox available via [Accessibility Toolbox](https://github.com/higgicd/Accessibility_Toolbox).
