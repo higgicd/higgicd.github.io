@@ -1,5 +1,4 @@
 # Publications
-## Journal Articles
 ### Urban Morphology and Urban Volumetrics
 - Bruyns, G.J.B., **Higgins, C.D.**, & Nel, D.H. (2020). Urban volumetrics: From vertical to volumetric urbanisation and its extensions to empirical morphological analysis. *Urban Studies*, DOI: [10.1177%2F0042098020936970](https://doi.org/10.1177%2F0042098020936970)
 
