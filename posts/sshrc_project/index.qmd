@@ -1,7 +1,7 @@
 ---
 title: "SSHRC Funding: Transit, Telework, and Housing Markets"
 date: "2022-08-25"
-categories: [code, analysis]
+categories: [research]
 image: "arial_photo_small.jpg"
 ---
 
