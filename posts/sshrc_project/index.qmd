@@ -1,0 +1,17 @@
+---
+title: "SSHRC Funding: Transit, Telework, and Housing Markets"
+date: "2022-08-25"
+categories: [code, analysis]
+image: "arial_photo_small.jpg"
+---
+
+To kick off the migration of this site to a new [Quarto](https://quarto.org/docs/websites/) website/blog, I am pleased to announce that my project _Transit, Telework, and Housing Markets: Investigating Locational Preferences for Transit-oriented Development in Pre- and Post-Pandemic Canadian Cities_ received funding from the Social Science and Humanities Research Council (SSHRC) in the last Insight Grant competition. This project is being undertaken with the help of [Khandker Nurul Habib](https://civmin.utoronto.ca/home/about-us/directory/professors/khandker/) in the co-Investigator role and collaborators [Steven Farber](https://utsc.utoronto.ca/geography/steven-farber) and [Eric J. Miller](https://civmin.utoronto.ca/home/about-us/directory/professors/eric-miller/). Here's a bit of the project summary. More to come over the next two years!
+
+## Project Summary
+
+Over the past several decades, policies that promote higher density, mixed use, compact, and transit-oriented development have been implemented as a means of achieving urban vitality and more sustainable growth around the world. Previous research into property markets and individual and household preferences has demonstrated that there is demand amongst certain segments of the population for living in neighbourhoods that offer rapid transit accessibility and higher-density built environments rich in urban amenities.
+
+However, the global COVID-19 pandemic has resulted in a significant shock to the urban systems of many cities, including those in Canada. Early evidence suggests that social distancing measures and increases in remote work have contributed to plummeting transit ridership and a shift in locational preferences for more suburban development. While it remains unclear how transportation systems and housing markets will adjust as we emerge from the pandemic, its disruptive effects on the urban spatial structure of cities requires further investigation.
+
+From a research perspective, previous work examining how individuals and households value transit accessibility and transit-oriented development in housing markets has been conducted under the assumption that individual or household preferences remain (relatively) static and that there will be demand for the benefits of planning interventions that promote more sustainable forms of development. But what happens in the opposite scenario, where transportation services and urban form remain constant and preferences rapidly change? To answer this question, the proposed research seeks to analyze the relationship between property market indicators, household locational preferences and travel patterns, and the demand for urban and suburban built environments. 
+
