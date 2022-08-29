@@ -3,9 +3,9 @@ project:
   output-dir: docs
 
 website:
-  #background: light
   title: "Christopher D. Higgins"
-  #image: "quarto.png"
+  site-url: https://higgicd.github.io
+  repo-url: https://github.com/higgicd/higgicd.github.io
   twitter-card:
     creator: "@higgicd"
     card-style: summary_large_image
