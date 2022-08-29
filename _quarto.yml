@@ -27,7 +27,7 @@ website:
         text: Home
       #- about.qmd
       - publications.qmd
-      #- research.qmd
+      - teaching.qmd
 
 format:
   html:

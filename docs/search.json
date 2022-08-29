@@ -1,5 +1,19 @@
 [
   {
+    "objectID": "teaching.html",
+    "href": "teaching.html",
+    "title": "Teaching",
+    "section": "",
+    "text": "JPG1400 Advanced Quantitative Methods\nGGRC30 Advanced GIS\nGGRC32 Essential Spatial Analysis"
+  },
+  {
+    "objectID": "teaching.html#past",
+    "href": "teaching.html#past",
+    "title": "Teaching",
+    "section": "Past",
+    "text": "Past\n\nUniversity of Toronto / UTSC\n\nCITC18 - Urban Transportation Policy Analysis\nGGRD25 - Research Seminar in Urban Spaces\n\n\n\nHong Kong Polytechnic University\n\nBRE217 Planning and Development\nLSGI2B01 Map Reading and Interpretation\nLSGI545 Urban Informatics\nLSGI5462 Urban Applications of GIS and Remote Sensing\n\n\n\nMcMaster University\n\nGEOG3HP3 Population Growth and Aging"
+  },
+  {
     "objectID": "posts/sshrc_project/index.html",
     "href": "posts/sshrc_project/index.html",
     "title": "SSHRC Funding: Transit, Telework, and Housing Markets",

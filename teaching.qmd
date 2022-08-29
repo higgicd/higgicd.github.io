@@ -1,0 +1,23 @@
+---
+title: "Teaching"
+---
+
+## Current
+### University of Toronto / UTSC
+-   JPG1400 Advanced Quantitative Methods
+-   GGRC30 Advanced GIS
+-   GGRC32 Essential Spatial Analysis
+
+## Past
+### University of Toronto / UTSC
+-   CITC18 - Urban Transportation Policy Analysis
+-   GGRD25 - Research Seminar in Urban Spaces
+
+### Hong Kong Polytechnic University
+- BRE217 Planning and Development
+- LSGI2B01 Map Reading and Interpretation
+- LSGI545 Urban Informatics
+- LSGI5462 Urban Applications of GIS and Remote Sensing
+
+### McMaster University
+- GEOG3HP3 Population Growth and Aging
