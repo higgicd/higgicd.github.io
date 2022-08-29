@@ -8,6 +8,7 @@ website:
   #image: "quarto.png"
   twitter-card:
     creator: "@higgicd"
+    card-style: summary_large_image
   navbar:
     background: light
     title: false
