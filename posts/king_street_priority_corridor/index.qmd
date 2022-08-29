@@ -196,7 +196,6 @@ While some special events in the fall of 2017, such as the Toronto International
 ```{r}
 #| label: fig-travel_time_comparison_plot
 #| fig-cap: "Priority Corridor Travel Times: Baseline, Pilot, and Late 2018"
-#| fig-height: 7
 #| warning: false
 filtered_trip_times_late_2018 <- trip_times %>%
   filter(between(x = ObservedDate, 
