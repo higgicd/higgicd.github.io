@@ -1,0 +1,39 @@
+project:
+  type: website
+
+website:
+  #background: light
+  title: "Christopher D. Higgins"
+  #image: "quarto.png"
+  twitter-card:
+    creator: "@higgicd"
+  navbar:
+    background: light
+    title: false
+    right:
+      #- about.qmd
+      - icon: twitter
+        aria-label: twitter
+        href: https://twitter.com/higgicd
+      - icon: github
+        aria-label: github
+        href: https://github.com/higgicd
+      - icon: mortarboard-fill
+        aria-label: scholar
+        href: https://scholar.google.ca/citations?user=BvBZbXMAAAAJ
+    left:
+      - href: index.qmd
+        text: Home
+      #- about.qmd
+      - publications.qmd
+      #- research.qmd
+
+format:
+  html:
+    theme: 
+      light: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+
