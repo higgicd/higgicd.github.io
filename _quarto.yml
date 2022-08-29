@@ -6,6 +6,7 @@ website:
   title: "Christopher D. Higgins"
   site-url: https://higgicd.github.io
   repo-url: https://github.com/higgicd/higgicd.github.io
+  open-graph: true
   twitter-card:
     creator: "@higgicd"
     card-style: summary_large_image
