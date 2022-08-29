@@ -5,7 +5,7 @@ categories: [research]
 image: "arial_photo_small.jpg"
 ---
 
-To kick off the migration of this site to a new [Quarto](https://quarto.org/docs/websites/) website/blog, I am pleased to announce that my project _Transit, Telework, and Housing Markets: Investigating Locational Preferences for Transit-oriented Development in Pre- and Post-Pandemic Canadian Cities_ received funding from the Social Science and Humanities Research Council (SSHRC) in the last Insight Grant competition. This project is being undertaken with the help of [Khandker Nurul Habib](https://civmin.utoronto.ca/home/about-us/directory/professors/khandker/) in the co-Investigator role and collaborators [Steven Farber](https://utsc.utoronto.ca/geography/steven-farber) and [Eric J. Miller](https://civmin.utoronto.ca/home/about-us/directory/professors/eric-miller/). Here's a bit of the project summary. More to come over the next two years!
+To kick off the migration of this site to a new [Quarto](https://quarto.org/docs/websites/) website/blog, I am pleased to announce that my project _Transit, Telework, and Housing Markets: Investigating Locational Preferences for Transit-oriented Development in Pre- and Post-Pandemic Canadian Cities_ received funding from the Social Science and Humanities Research Council (SSHRC) in the last Insight Grant competition. This project is being undertaken with the help of co-Investigators [Khandker Nurul Habib](https://civmin.utoronto.ca/home/about-us/directory/professors/khandker/), [Steven Farber](https://utsc.utoronto.ca/geography/steven-farber), and [Eric J. Miller](https://civmin.utoronto.ca/home/about-us/directory/professors/eric-miller/). Here's a bit of the project summary. More to come over the next two years!
 
 ## Project Summary
 
