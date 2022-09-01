@@ -53,13 +53,14 @@ With regards to primary objective of increasing travel speeds and the reliabilit
 ## Load TTC CIS Data
 
 ```{r}
-#| message: false
 #| label: load packages
+#| message: false
 #| warning: false
 library(tidyverse)
 library(lubridate)
 library(purrr)
 library(gt)
+library(ggdist)
 library(opendatatoronto)
 ```
 
@@ -191,12 +192,9 @@ filtered_trip_times %>%
   fmt_number(contains(c("baseline", "pilot", "difference")), decimals = 1)
 ```
 
-While some special events in the fall of 2017, such as the Toronto International Film Festival, impact the travel times in this baseline period, doing the same analysis to compare the baseline period with data from one year later (September to end of October 2018) shows stability in the reduced travel times over the service periods (@fig-travel_time_comparison_plot).
+While some special events in the fall of 2017 impact the travel times in this baseline period, such as the Toronto International Film Festival, doing the same analysis to compare the baseline period with data from one year later (September to end of October 2018) shows some stability in the reductions in average travel times over the service periods (@fig-travel_time_comparison_plot).
 
 ```{r}
-#| label: fig-travel_time_comparison_plot
-#| fig-cap: "Priority Corridor Travel Times: Baseline, Pilot, and Late 2018"
-#| warning: false
 filtered_trip_times_late_2018 <- trip_times %>%
   filter(between(x = ObservedDate, 
                  left = as_date("2018-09-01"), 
@@ -204,18 +202,40 @@ filtered_trip_times_late_2018 <- trip_times %>%
          day_name != "Sat") %>%
   mutate(phase = "late 2018") %>%
   bind_rows(filtered_trip_times) %>%
-  group_by(phase, TimePeriod, Direction) %>%
-  summarize(mean_tt = mean(RunningTime))
+  mutate(phase = as.factor(phase),
+         phase = fct_relevel(phase,
+                             "baseline", "pilot", "late 2018"))
+```
 
-ggplot(filtered_trip_times_late_2018, aes(x = TimePeriod, y = mean_tt, group = phase)) + 
-  geom_line(aes(col = phase), size = 1) + 
+```{r}
+#| label: fig-travel_time_comparison_plot
+#| fig-cap: "Priority Corridor Travel Times: Baseline, Pilot, and Late 2018"
+#| fig-height: 7
+#| fig-width: 7
+#| warning: false
+ggplot(filtered_trip_times_late_2018, 
+       aes(y = RunningTime, x = TimePeriod, fill = phase)) +
+  stat_slab(side = "both", 
+            scale = 0.5,
+            show.legend = TRUE,
+            position = position_dodge(width = .8),
+            aes(fill_ramp = stat(level)),
+            .width = c(.50, .75, .95, 1)) +
+  stat_summary(fun = "mean",
+               geom = "crossbar", 
+               width = 0.5,
+               lwd = 0.1,
+               position = position_dodge(width = .8),
+               show.legend = F)  +
+  scale_colour_manual(values = c("#33638DFF", "#3CBB75FF", "#FDE725FF"), aesthetics = "fill")+
+  guides(fill_ramp = "none") +
+  ylab("minutes") +
+  ylim(10, 30) +
   facet_grid(rows = vars(as.factor(Direction))) +
-  scale_colour_manual(values = c("#33638DFF", "#3CBB75FF", "#FDE725FF")) +
-  scale_y_continuous(limits = c(11.5, 21.5)) +
-  ylab("mean travel time") +
   theme_minimal() +
   theme(axis.title.x = element_blank(),
-        axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+        axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
+        legend.position="top")
 ```
 
 The results from this analysis are feeding into our ongoing work looking into how changes in travel times contribute to changes in accessibility and real estate prices - more on this soon!
