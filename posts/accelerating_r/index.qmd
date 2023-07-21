@@ -55,7 +55,7 @@ To undo these customizations, you would have to either rename (or delete) the tw
 
 ### macOS
 
-Accelerating R on a (newer) Mac is more straightforward, and instructions for doing so are actually contained within the official [R for macOS FAQ](https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#Which-BLAS-is-used-and-how-can-it-be-changed_003f). R for macOS actually ships with vecLib, which is part of Apple's Accelerate framework of optimizations for Apple hardware. All you have to do is tell R to use the vecLib BLAS rather than the reference one.
+Accelerating R on a (newer) Mac is more straightforward, and instructions for doing so are actually contained within the official [R for macOS FAQ](https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#Which-BLAS-is-used-and-how-can-it-be-changed_003f). R for macOS ships with vecLib, which is part of Apple's Accelerate framework of optimizations for Apple hardware. All you have to do is tell R to use the vecLib BLAS rather than the reference one.
 
 To do so, open Terminal and run:
 

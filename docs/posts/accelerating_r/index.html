@@ -272,7 +272,7 @@ Warning
 </section>
 <section id="macos" class="level3">
 <h3 class="anchored" data-anchor-id="macos">macOS</h3>
-<p>Accelerating R on a (newer) Mac is more straightforward, and instructions for doing so are actually contained within the official <a href="https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#Which-BLAS-is-used-and-how-can-it-be-changed_003f">R for macOS FAQ</a>. R for macOS actually ships with vecLib, which is part of Apple’s Accelerate framework of optimizations for Apple hardware. All you have to do is tell R to use the vecLib BLAS rather than the reference one.</p>
+<p>Accelerating R on a (newer) Mac is more straightforward, and instructions for doing so are actually contained within the official <a href="https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#Which-BLAS-is-used-and-how-can-it-be-changed_003f">R for macOS FAQ</a>. R for macOS ships with vecLib, which is part of Apple’s Accelerate framework of optimizations for Apple hardware. All you have to do is tell R to use the vecLib BLAS rather than the reference one.</p>
 <p>To do so, open Terminal and run:</p>
 <ul>
 <li><code>cd /Library/Frameworks/R.framework/Resources/lib</code></li>
@@ -301,7 +301,7 @@ Warning
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span> (S <span class="ot">&lt;-</span> <span class="fu">svd</span> (A,<span class="at">nu=</span><span class="dv">0</span>,<span class="at">nv=</span><span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-  2.401   0.243   1.862 </code></pre>
+  2.446   0.252   1.916 </code></pre>
 </div>
 </div>
 <p>On my PC with an 18-core Intel Xeon processor, this takes about <em>40 seconds</em> without using the MKL. After linking the libraries, the computation time drops to just over <em>3 seconds</em>! My MacBook Pro with an M2 processor is even faster at about 2 seconds. In effect, this drops my modelling time for some large spatial econometric models from hours to minutes.</p>
