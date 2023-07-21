@@ -5,7 +5,7 @@ categories: [code, analysis]
 image: "accelerating_r.jpg"
 ---
 
-One of my favourite types of data to work with are real estate transactions. There is always something interesting to be learned from using hedonic models to tease out or quantify the implicit preferences of homebuyers (and renters) with respect to the old adage of "location, location, location!".
+One of my favourite types of data to work with is real estate transactions. There is always something interesting to be learned from using hedonic models to tease out or quantify the implicit preferences of homebuyers (and renters) with respect to the old adage of "location, location, location!".
 
 Such data tend to exhibit strong spatial autocorrelation and its associated ills. In response, I often turn to spatial econometric models that take spatial relationships among observations into account. R has a great ecosystem of packages for spatial econometrics, including the {spatialreg} package that I use often.
 
@@ -28,14 +28,14 @@ Under the hood, R uses two libraries for performing common mathematical operatio
 Thankfully, there are several solutions out there for replacing R's reference libraries with more optimized ones that can lead to dramatic reductions in computational time. Since I use both Windows (Intel processors) and macOS (Intel and M-series processors) in my work, below you can find instructions for speeding up R in those two environments. AFAIK Linux users and those with AMD processors can utilize [OpenBLAS](https://www.openblas.net) to acheve the same results, but I don't have any experience in linking these libraries with R.
 
 ::: callout-warning
-These solutions require some knowledge of the file system and administrator privileges (Windows) and the Terminal (macOS). Like R itself, I offer no warranty or support of any kind for these changes! Indeed, customizing your R install might (and has in the past - see below) broken some R packages. It is pretty easy to revert these changes if you need to, but certainly stop here if you aren't comfortable with the risk.
+These solutions require some knowledge of the file system and administrator privileges (Windows) and the Terminal (macOS). Like R itself, I offer no warranty or support of any kind for these changes! Indeed, customizing your R install might (and has in the past - see below) broken some R packages. Moreover, and as the R team [cautions](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#Can-I-use-a-fast-BLAS_003f), "Note that fast BLAS implementations may give different (and often slightly less accurate) results than the reference BLAS included in R". It is pretty easy to revert these changes if you need to, but certainly stop here if you aren't comfortable with the risk. 
 :::
 
 ### Windows and Intel
 
-My initial search for ways to speed up R led to my adoption of Microsoft's R Open product, which, by default, used Intel's Math Kernel Library (MKL). This library uses versions of the BLAS and LAPACK libraries that are optimized for fast multithreaded performance on Intel's processors. Sure enough, this led to a dramatic reduction in computational time associated with running spatial econometric models. However, Microsoft discontinued the R Open project with the last release using R 4.0.2 in 2020.
+My initial search for ways to speed up R led to me adopting of Microsoft's R Open, which, by default, used Intel's Math Kernel Library (MKL). The MKL uses versions of the BLAS and LAPACK libraries that are optimized for fast multithreaded performance on Intel's processors. Sure enough, this led to a dramatic reduction in computational time associated with running spatial econometric models. However, Microsoft discontinued the R Open project with the last release using R 4.0.2 in 2020.
 
-As I further scoured the web for solutions, I came across this [stackoverflow thread](https://stackoverflow.com/questions/38090206/linking-intels-math-kernel-library-mkl-to-r-on-windows), which had details for how to manually link Intel's MKL with more recent versions of R. The writeup is a bit complex, with some more recent working solutions now found within comments to the original answers in the thread. So here is a more streamlined version of a working solution.
+As I further scoured the web for solutions, I came across this [stackoverflow thread](https://stackoverflow.com/questions/38090206/linking-intels-math-kernel-library-mkl-to-r-on-windows), which had details for how to manually link Intel's MKL with more recent versions of R. The write up is a bit complex, with some more recent working solutions now found within comments to the original answers in the thread. So here is a more streamlined version.
 
 First, you will need an install of R on your PC. At the time of writing, the current version is 4.3.1, so my file paths below will use that example. Second, download and install Intel's MKL, which is now part of their larger oneAPI product. I used the online installer for Windows found [here](https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html#onemkl). At the time of writing, the oneMKL version was 2023.2.0. With these two software packages installed, now we have to do some manual steps (accepting the administrator rights prompts along the way):
 
@@ -44,8 +44,8 @@ First, you will need an install of R on your PC. At the time of writing, the cur
 3.  rename the existing `Rblas.dll` to something like `Rblas_ref.dll`
 4.  rename the existing `Rlapack.dll` to something like `Rlapack_ref.dll`
 5.  make two copies of `mkl_rt.2.dll`
-6.  rename one of the copies to `Rblas.dll`
-7.  rename the other copy to `Rlapack.dll`
+6.  rename one of the copies `Rblas.dll`
+7.  rename the other copy `Rlapack.dll`
 
 #### Issues and Reversion
 
