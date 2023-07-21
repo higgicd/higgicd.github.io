@@ -264,6 +264,7 @@ Warning
 <li>rename one of the copies <code>Rblas.dll</code></li>
 <li>rename the other copy <code>Rlapack.dll</code></li>
 </ol>
+<p>Large math operations should now use all of your CPU’s logical cores.</p>
 <section id="issues-and-reversion" class="level4">
 <h4 class="anchored" data-anchor-id="issues-and-reversion">Issues and Reversion</h4>
 <p>The one issue I have encountered in the past with linking the MKL to R is that the {igraph} package (and those depending on it) stopped working. According to a <a href="https://stackoverflow.com/a/76221553">recent answer</a> on the original stackoverflow thread that inspired this, the issue has recently been addressed.</p>
@@ -301,7 +302,7 @@ Warning
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span> (S <span class="ot">&lt;-</span> <span class="fu">svd</span> (A,<span class="at">nu=</span><span class="dv">0</span>,<span class="at">nv=</span><span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-  2.446   0.252   1.916 </code></pre>
+  2.425   0.243   1.860 </code></pre>
 </div>
 </div>
 <p>On my PC with an 18-core Intel Xeon processor, this takes about <em>40 seconds</em> without using the MKL. After linking the libraries, the computation time drops to just over <em>3 seconds</em>! My MacBook Pro with an M2 processor is even faster at about 2 seconds. In effect, this drops my modelling time for some large spatial econometric models from hours to minutes.</p>

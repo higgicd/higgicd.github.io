@@ -47,6 +47,8 @@ First, you will need an install of R on your PC. At the time of writing, the cur
 6.  rename one of the copies `Rblas.dll`
 7.  rename the other copy `Rlapack.dll`
 
+Large math operations should now use all of your CPU's logical cores.
+
 #### Issues and Reversion
 
 The one issue I have encountered in the past with linking the MKL to R is that the {igraph} package (and those depending on it) stopped working. According to a [recent answer](https://stackoverflow.com/a/76221553) on the original stackoverflow thread that inspired this, the issue has recently been addressed.
