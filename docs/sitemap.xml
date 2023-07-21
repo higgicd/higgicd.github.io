@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://higgicd.github.io/teaching.html</loc>
-    <lastmod>2023-06-23T13:51:05.504Z</lastmod>
+    <lastmod>2023-07-21T16:53:15.237Z</lastmod>
+  </url>
+  <url>
+    <loc>https://higgicd.github.io/posts/accelerating_r/index.html</loc>
+    <lastmod>2023-07-21T16:53:15.831Z</lastmod>
   </url>
   <url>
     <loc>https://higgicd.github.io/posts/sshrc_project/index.html</loc>
-    <lastmod>2023-06-23T13:51:05.841Z</lastmod>
+    <lastmod>2023-07-21T16:53:16.128Z</lastmod>
   </url>
   <url>
     <loc>https://higgicd.github.io/posts/king_street_priority_corridor/index.html</loc>
-    <lastmod>2023-06-23T13:51:06.422Z</lastmod>
+    <lastmod>2023-07-21T16:53:16.829Z</lastmod>
   </url>
   <url>
     <loc>https://higgicd.github.io/index.html</loc>
-    <lastmod>2023-06-23T13:51:06.716Z</lastmod>
+    <lastmod>2023-07-21T16:53:17.236Z</lastmod>
   </url>
   <url>
     <loc>https://higgicd.github.io/publications.html</loc>
-    <lastmod>2023-06-23T13:51:07.106Z</lastmod>
+    <lastmod>2023-07-21T16:53:17.599Z</lastmod>
   </url>
   <url>
     <loc>https://higgicd.github.io/about.html</loc>
-    <lastmod>2023-06-23T13:51:07.379Z</lastmod>
+    <lastmod>2023-07-21T16:53:17.818Z</lastmod>
   </url>
 </urlset>

@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Christopher D. Higgins">
-<meta name="dcterms.date" content="2022-08-25">
+<meta name="dcterms.date" content="2023-07-21">
 
-<title>Christopher D. Higgins - SSHRC Funding: Transit, Telework, and Housing Markets</title>
+<title>Christopher D. Higgins - Accelerating R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -63,13 +97,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Christopher D. Higgins - SSHRC Funding: Transit, Telework, and Housing Markets">
+<meta property="og:title" content="Christopher D. Higgins - Accelerating R">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://higgicd.github.io/posts/sshrc_project/arial_photo_small.jpg">
+<meta property="og:image" content="https://higgicd.github.io/posts/accelerating_r/accelerating_r.jpg">
 <meta property="og:site-name" content="Christopher D. Higgins">
-<meta name="twitter:title" content="Christopher D. Higgins - SSHRC Funding: Transit, Telework, and Housing Markets">
+<meta name="twitter:title" content="Christopher D. Higgins - Accelerating R">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://higgicd.github.io/posts/sshrc_project/arial_photo_small.jpg">
+<meta name="twitter:image" content="https://higgicd.github.io/posts/accelerating_r/accelerating_r.jpg">
 <meta name="twitter:creator" content="@higgicd">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -126,9 +160,10 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">SSHRC Funding: Transit, Telework, and Housing Markets</h1>
+      <h1 class="title">Accelerating R</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">research</div>
+                <div class="quarto-category">code</div>
+                <div class="quarto-category">analysis</div>
               </div>
                   </div>
   </div>
@@ -153,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 25, 2022</p>
+        <p class="date">July 21, 2023</p>
       </div>
     </div>
     
@@ -169,7 +204,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#project-summary" id="toc-project-summary" class="nav-link active" data-scroll-target="#project-summary">Project Summary</a></li>
+  <li><a href="#accelerating-r" id="toc-accelerating-r" class="nav-link active" data-scroll-target="#accelerating-r">Accelerating R</a>
+  <ul class="collapse">
+  <li><a href="#windows-and-intel" id="toc-windows-and-intel" class="nav-link" data-scroll-target="#windows-and-intel">Windows and Intel</a></li>
+  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos">macOS</a></li>
+  <li><a href="#checking-that-it-works" id="toc-checking-that-it-works" class="nav-link" data-scroll-target="#checking-that-it-works">Checking that it works</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -179,14 +219,95 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>To kick off the migration of this site to a new <a href="https://quarto.org/docs/websites/">Quarto</a> website/blog, I am pleased to announce that my project <em>Transit, Telework, and Housing Markets: Investigating Locational Preferences for Transit-oriented Development in Pre- and Post-Pandemic Canadian Cities</em> received funding from the Social Science and Humanities Research Council (SSHRC) in the last Insight Grant competition. This project is being undertaken with the help of co-Investigators <a href="https://civmin.utoronto.ca/home/about-us/directory/professors/khandker/">Khandker Nurul Habib</a>, <a href="https://utsc.utoronto.ca/geography/steven-farber">Steven Farber</a>, and <a href="https://civmin.utoronto.ca/home/about-us/directory/professors/eric-miller/">Eric J. Miller</a>. Here’s a bit of the project summary. More to come over the next two years!</p>
-<section id="project-summary" class="level2">
-<h2 class="anchored" data-anchor-id="project-summary">Project Summary</h2>
-<p>Over the past several decades, policies that promote higher density, mixed use, compact, and transit-oriented development have been implemented as a means of achieving urban vitality and more sustainable growth around the world. Previous research into property markets and individual and household preferences has demonstrated that there is demand amongst certain segments of the population for living in neighbourhoods that offer rapid transit accessibility and higher-density built environments rich in urban amenities.</p>
-<p>However, the global COVID-19 pandemic has resulted in a significant shock to the urban systems of many cities, including those in Canada. Early evidence suggests that social distancing measures and increases in remote work have contributed to plummeting transit ridership and a shift in locational preferences for more suburban development. While it remains unclear how transportation systems and housing markets will adjust as we emerge from the pandemic, its disruptive effects on the urban spatial structure of cities requires further investigation.</p>
-<p>From a research perspective, previous work examining how individuals and households value transit accessibility and transit-oriented development in housing markets has been conducted under the assumption that individual or household preferences remain (relatively) static and that there will be demand for the benefits of planning interventions that promote more sustainable forms of development. But what happens in the opposite scenario, where transportation services and urban form remain constant and preferences rapidly change? To answer this question, the proposed research seeks to analyze the relationship between property market indicators, household locational preferences and travel patterns, and the demand for urban and suburban built environments.</p>
+<p>One of my favourite types of data to work with are real estate transactions. There is always something interesting to be learned from using hedonic models to tease out or quantify the implicit preferences of homebuyers (and renters) with respect to the old adage of “location, location, location!”.</p>
+<p>Such data tend to exhibit strong spatial autocorrelation and its associated ills. In response, I often turn to spatial econometric models that take spatial relationships among observations into account. R has a great ecosystem of packages for spatial econometrics, including the {spatialreg} package that I use often.</p>
+<p>However, running these models with many observations can be a <em>slow</em> process in R.</p>
+<p>This is due to the computational costs associated with the manipulation of (potentially very large) spatial weights matrices. When using R’s default math libraries, this can lead to models taking hours or even days to run. Moreover, there isn’t much benefit to just getting better computer hardware: open up task manager on Windows or Activity Monitor on the Mac and you will see that R is only using one CPU core.</p>
+<section id="accelerating-r" class="level2">
+<h2 class="anchored" data-anchor-id="accelerating-r">Accelerating R</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-banner" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./accelerating_r.jpg" class="img-fluid figure-img" width="452"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Moar fasteR!</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Under the hood, R uses two libraries for performing common mathematical operations: Basic Linear Algebra Subprograms (BLAS) and LAPACK (Linear Algebra Package). R ships with “reference” versions of BLAS and LAPACK that will return identical results across any installation of R, but are otherwise un-optimized (see <a href="https://cran.irsn.fr/web/packages/gcbd/vignettes/gcbd.pdf">Eddelbuettel, 2016</a>).</p>
+<p>Thankfully, there are several solutions out there for replacing R’s reference libraries with more optimized ones that can lead to dramatic reductions in computational time. Since I use both Windows (Intel processors) and macOS (Intel and M-series processors) in my work, below you can find instructions for speeding up R in those two environments. AFAIK Linux users and those with AMD processors can utilize <a href="https://www.openblas.net">OpenBLAS</a> to acheve the same results, but I don’t have any experience in linking these libraries with R.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These solutions require some knowledge of the file system and administrator privileges (Windows) and the Terminal (macOS). Like R itself, I offer no warranty or support of any kind for these changes! Indeed, customizing your R install might (and has in the past - see below) broken some R packages. It is pretty easy to revert these changes if you need to, but certainly stop here if you aren’t comfortable with the risk.</p>
+</div>
+</div>
+<section id="windows-and-intel" class="level3">
+<h3 class="anchored" data-anchor-id="windows-and-intel">Windows and Intel</h3>
+<p>My initial search for ways to speed up R led to my adoption of Microsoft’s R Open product, which, by default, used Intel’s Math Kernel Library (MKL). This library uses versions of the BLAS and LAPACK libraries that are optimized for fast multithreaded performance on Intel’s processors. Sure enough, this led to a dramatic reduction in computational time associated with running spatial econometric models. However, Microsoft discontinued the R Open project with the last release using R 4.0.2 in 2020.</p>
+<p>As I further scoured the web for solutions, I came across this <a href="https://stackoverflow.com/questions/38090206/linking-intels-math-kernel-library-mkl-to-r-on-windows">stackoverflow thread</a>, which had details for how to manually link Intel’s MKL with more recent versions of R. The writeup is a bit complex, with some more recent working solutions now found within comments to the original answers in the thread. So here is a more streamlined version of a working solution.</p>
+<p>First, you will need an install of R on your PC. At the time of writing, the current version is 4.3.1, so my file paths below will use that example. Second, download and install Intel’s MKL, which is now part of their larger oneAPI product. I used the online installer for Windows found <a href="https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html#onemkl">here</a>. At the time of writing, the oneMKL version was 2023.2.0. With these two software packages installed, now we have to do some manual steps (accepting the administrator rights prompts along the way):</p>
+<ol type="1">
+<li>copy all the files inside the <code>C:\Program Files (x86)\Intel\oneAPI\mkl\2023.2.0\redist\intel64</code> folder and paste them inside <code>C:\Program Files\R\R-4.3.1\bin\x64</code></li>
+<li>copy all the files inside the <code>C:\Program Files (x86)\Intel\oneAPI\compiler\2023.2.0\windows\redist\intel64_win\compiler</code> folder and paste them inside <code>C:\Program Files\R\R-4.3.1\bin\x64</code></li>
+<li>rename the existing <code>Rblas.dll</code> to something like <code>Rblas_ref.dll</code></li>
+<li>rename the existing <code>Rlapack.dll</code> to something like <code>Rlapack_ref.dll</code></li>
+<li>make two copies of <code>mkl_rt.2.dll</code></li>
+<li>rename one of the copies to <code>Rblas.dll</code></li>
+<li>rename the other copy to <code>Rlapack.dll</code></li>
+</ol>
+<section id="issues-and-reversion" class="level4">
+<h4 class="anchored" data-anchor-id="issues-and-reversion">Issues and Reversion</h4>
+<p>The one issue I have encountered in the past with linking the MKL to R is that the {igraph} package (and those depending on it) stopped working. According to a <a href="https://stackoverflow.com/a/76221553">recent answer</a> on the original stackoverflow thread that inspired this, the issue has recently been addressed.</p>
+<p>To undo these customizations, you would have to either rename (or delete) the two MKL files we renamed to be <code>Rblas.dll</code> and <code>Rlapack.dll</code> and substitute the original reference files back in by renaming them to their original names.</p>
+</section>
+</section>
+<section id="macos" class="level3">
+<h3 class="anchored" data-anchor-id="macos">macOS</h3>
+<p>Accelerating R on a (newer) Mac is more straightforward, and instructions for doing so are actually contained within the official <a href="https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#Which-BLAS-is-used-and-how-can-it-be-changed_003f">R for macOS FAQ</a>. R for macOS actually ships with vecLib, which is part of Apple’s Accelerate framework of optimizations for Apple hardware. All you have to do is tell R to use the vecLib BLAS rather than the reference one.</p>
+<p>To do so, open Terminal and run:</p>
+<ul>
+<li><code>cd /Library/Frameworks/R.framework/Resources/lib</code></li>
+</ul>
+<p>followed by:</p>
+<ul>
+<li><code>ln -sf libRblas.vecLib.dylib libRblas.dylib</code></li>
+</ul>
+<p>On an Intel Mac, this will result in optimized math functions using all available CPU cores. On M-series processors, it <a href="https://stackoverflow.com/questions/67587455/accelerate-framework-uses-only-one-core-on-mac-m1">looks like</a> this behaves a bit differently, as optimized math routines are instead handled by the specialized AMX co-processor, so you will not see full CPU utilization.</p>
+<section id="issues-and-reversion-1" class="level4">
+<h4 class="anchored" data-anchor-id="issues-and-reversion-1">Issues and Reversion</h4>
+<p>I have not run into any compatibility issues using R with Apple’s Accelerate framework. To revert the changes, run the following two commands in Terminal to point R back to the original reference BLAS:</p>
+<ul>
+<li><code>cd /Library/Frameworks/R.framework/Resources/lib</code></li>
+<li><code>ln -sf libRblas.0.dylib libRblas.dylib</code></li>
+</ul>
+</section>
+</section>
+<section id="checking-that-it-works" class="level3">
+<h3 class="anchored" data-anchor-id="checking-that-it-works">Checking that it works</h3>
+<p>A simple check to ensure R is using the optimized libraries is to run the following code from this <a href="https://stackoverflow.com/a/42854705">answer</a> on stackoverflow.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">runif</span> (m<span class="sc">*</span>n),m,n)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span> (S <span class="ot">&lt;-</span> <span class="fu">svd</span> (A,<span class="at">nu=</span><span class="dv">0</span>,<span class="at">nv=</span><span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   user  system elapsed 
+  2.552   0.278   2.059 </code></pre>
+</div>
+</div>
+<p>On my PC with an 18-core Intel Xeon processor, this takes about <em>40 seconds</em> without using the MKL. After linking the libraries, the computation time drops to just over <em>3 seconds</em>! My MacBook Pro with an M2 processor is even faster at about 2 seconds. In effect, this drops my modelling time for some large spatial econometric models from hours to minutes.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
