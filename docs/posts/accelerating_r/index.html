@@ -258,7 +258,7 @@ Warning
 <ol type="1">
 <li>copy all the files inside the <code>C:\Program Files (x86)\Intel\oneAPI\mkl\2023.2.0\redist\intel64</code> folder and paste them inside <code>C:\Program Files\R\R-4.3.1\bin\x64</code></li>
 <li>copy all the files inside the <code>C:\Program Files (x86)\Intel\oneAPI\compiler\2023.2.0\windows\redist\intel64_win\compiler</code> folder and paste them inside <code>C:\Program Files\R\R-4.3.1\bin\x64</code></li>
-<li>rename the existing <code>Rblas.dll</code> to something like <code>Rblas_ref.dll</code></li>
+<li>in the <code>C:\Program Files\R\R-4.3.1\bin\x64</code> folder, rename the existing <code>Rblas.dll</code> to something like <code>Rblas_ref.dll</code></li>
 <li>rename the existing <code>Rlapack.dll</code> to something like <code>Rlapack_ref.dll</code></li>
 <li>make two copies of <code>mkl_rt.2.dll</code></li>
 <li>rename one of the copies <code>Rblas.dll</code></li>
@@ -302,7 +302,7 @@ Warning
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span> (S <span class="ot">&lt;-</span> <span class="fu">svd</span> (A,<span class="at">nu=</span><span class="dv">0</span>,<span class="at">nv=</span><span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-  2.425   0.243   1.860 </code></pre>
+  2.389   0.248   1.826 </code></pre>
 </div>
 </div>
 <p>On my PC with an 18-core Intel Xeon processor, this takes about <em>40 seconds</em> without using the MKL. After linking the libraries, the computation time drops to just over <em>3 seconds</em>! My MacBook Pro with an M2 processor is even faster at about 2 seconds. In effect, this drops my modelling time for some large spatial econometric models from hours to minutes.</p>

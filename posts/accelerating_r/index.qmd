@@ -41,7 +41,7 @@ First, you will need an install of R on your PC. At the time of writing, the cur
 
 1.  copy all the files inside the `C:\Program Files (x86)\Intel\oneAPI\mkl\2023.2.0\redist\intel64` folder and paste them inside `C:\Program Files\R\R-4.3.1\bin\x64`
 2.  copy all the files inside the `C:\Program Files (x86)\Intel\oneAPI\compiler\2023.2.0\windows\redist\intel64_win\compiler` folder and paste them inside `C:\Program Files\R\R-4.3.1\bin\x64`
-3.  rename the existing `Rblas.dll` to something like `Rblas_ref.dll`
+3.  in the `C:\Program Files\R\R-4.3.1\bin\x64` folder, rename the existing `Rblas.dll` to something like `Rblas_ref.dll`
 4.  rename the existing `Rlapack.dll` to something like `Rlapack_ref.dll`
 5.  make two copies of `mkl_rt.2.dll`
 6.  rename one of the copies `Rblas.dll`
