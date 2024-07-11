@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://higgicd.github.io/teaching.html</loc>
-    <lastmod>2023-09-28T17:49:49.495Z</lastmod>
-  </url>
-  <url>
-    <loc>https://higgicd.github.io/posts/accelerating_r/index.html</loc>
-    <lastmod>2023-12-21T16:54:41.392Z</lastmod>
-  </url>
-  <url>
-    <loc>https://higgicd.github.io/posts/sshrc_project/index.html</loc>
-    <lastmod>2023-09-28T17:49:50.367Z</lastmod>
-  </url>
-  <url>
-    <loc>https://higgicd.github.io/posts/king_street_priority_corridor/index.html</loc>
-    <lastmod>2023-09-28T17:49:51.030Z</lastmod>
+    <loc>https://higgicd.github.io/about.html</loc>
+    <lastmod>2022-08-27T01:09:31.000Z</lastmod>
   </url>
   <url>
     <loc>https://higgicd.github.io/index.html</loc>
-    <lastmod>2023-12-21T16:54:40.412Z</lastmod>
+    <lastmod>2022-08-27T19:12:48.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://higgicd.github.io/posts/sshrc_project/index.html</loc>
+    <lastmod>2022-08-29T19:40:19.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://higgicd.github.io/teaching.html</loc>
+    <lastmod>2022-08-29T15:54:52.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://higgicd.github.io/posts/accelerating_r/index.html</loc>
+    <lastmod>2023-12-21T16:54:36.036Z</lastmod>
+  </url>
+  <url>
+    <loc>https://higgicd.github.io/posts/king_street_priority_corridor/index.html</loc>
+    <lastmod>2022-09-01T20:13:27.000Z</lastmod>
   </url>
   <url>
     <loc>https://higgicd.github.io/publications.html</loc>
-    <lastmod>2023-09-28T17:49:51.730Z</lastmod>
-  </url>
-  <url>
-    <loc>https://higgicd.github.io/about.html</loc>
-    <lastmod>2023-09-28T17:49:51.931Z</lastmod>
+    <lastmod>2024-07-11T13:42:30.372Z</lastmod>
   </url>
 </urlset>
