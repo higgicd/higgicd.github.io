@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Christopher D. Higgins - Publications</title>
+<title>Publications – Christopher D. Higgins</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -89,9 +89,9 @@ div.csl-indent {
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Christopher D. Higgins - Publications">
+<meta property="og:title" content="Publications – Christopher D. Higgins">
 <meta property="og:site_name" content="Christopher D. Higgins">
-<meta name="twitter:title" content="Christopher D. Higgins - Publications">
+<meta name="twitter:title" content="Publications – Christopher D. Higgins">
 <meta name="twitter:creator" content="@higgicd">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -103,7 +103,7 @@ div.csl-indent {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -144,7 +144,7 @@ div.csl-indent {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -153,7 +153,7 @@ div.csl-indent {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
     </div>
 <!-- main -->
@@ -179,6 +179,15 @@ div.csl-indent {
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="1" data-line-spacing="2" role="list">
+<div id="ref-arku2024" class="csl-entry" role="listitem">
+Arku, R. N., Higgins, C. D., Fischer, J., &amp; Farber, S. (2024). Do affluent neighbourhoods pay more for transit access? Exploring the capitalization of employment accessibility within different housing submarkets in Vancouver. <em>Journal of Transport Geography</em>, <em>121</em>, 104038. <a href="https://doi.org/10.1016/j.jtrangeo.2024.104038">https://doi.org/10.1016/j.jtrangeo.2024.104038</a>
+</div>
+<div id="ref-higgins2024" class="csl-entry" role="listitem">
+Higgins, C. D., Arku, R. N., Farber, S., &amp; Miller, E. J. (2024). Modelling changes in accessibility and property values associated with the King Street Transit Priority Corridor project in Toronto. <em>Transportation Research Part A: Policy and Practice</em>, <em>190</em>, 104256. <a href="https://doi.org/10.1016/j.tra.2024.104256">https://doi.org/10.1016/j.tra.2024.104256</a>
+</div>
+<div id="ref-parga2024" class="csl-entry" role="listitem">
+Parga, J. P. F. A., Tiznado-Aitken, I., Jamal, S., Farber, S., Yu, A., &amp; Higgins, C. (2024). Perceived accessibility and self-rated health: Examining subjective well-being in the suburbs of Scarborough, Canada. <em>Transportation Research Part A: Policy and Practice</em>, <em>190</em>, 104261. <a href="https://doi.org/10.1016/j.tra.2024.104261">https://doi.org/10.1016/j.tra.2024.104261</a>
+</div>
 <div id="ref-ng2024" class="csl-entry" role="listitem">
 Ng, K. Y., Hong, A., Higgins, C. D., Widener, M. J., &amp; Koh, K. (2024). Beyond distance: Measuring spatial accessibility to healthy food for older adults in Hong Kong using a 3D least-effort method. <em>Applied Geography</em>, <em>169</em>, 103336. <a href="https://doi.org/10.1016/j.apgeog.2024.103336">https://doi.org/10.1016/j.apgeog.2024.103336</a>
 </div>
@@ -330,18 +339,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -373,7 +371,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/higgicd\.github\.io");
@@ -381,7 +401,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
