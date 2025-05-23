@@ -1,0 +1,685 @@
+---
+title: "Accessibility Analysis in Toronto"
+date: "2025-05-21"
+categories: [code, analysis]
+image: "banner.jpg"
+bibliography: references.bib
+code-annotations: hover
+---
+
+Over this past academic year, we were lucky to host Dr. Rafael Pereira as a Bousfield Distinguished Visiting Professor in the Department of Geography and Planning. Rafa earned his PhD at Oxford and has published dozens of great academic papers. He is also the lead of the data science team at the Institute for Applied Economic Research (Ipea) which has published the {r5r} [package](https://github.com/ipeaGIT/r5r), which enables rapid realistic routing on multimodal transport networks by connecting R with the open source [R5 Routing Engine](https://github.com/conveyal/r5) from Conveyal. Beyond his Bousfield Lecture on [Advancing Urban Accessibility for Inclusive Cities](https://www.geography.utoronto.ca/news/bousfield-lecture-presented-rafael-pereira), he also led a crash-course workshop on [Urban Accessibility with R](https://ipeagit.github.io/access_workshop_toronto_2025/) where students and practitioners in attendance got some hands-on experience using R for accessibility analysis with some data for Brazil.
+
+Between the workshop, my teaching of courses like GGRC30 Advanced GIS and JPG1400 Advanced Quantitative Methods where students are increasingly conducting accessibility analyses and often needing some guidance, and the joking by Steven Farber that I should be local tech support for {r5r}, I've put together a collection of the first steps I undertake in nearly every analysis of accessibility in the City of Toronto and larger region. Together, these serve as a nice little introductory vignette to the topic in the local context.
+
+# What is Accessibility?
+
+To jump right into the topic, transportation accessibility reflects the ease with which individuals can reach destinations using the transportation network. There are many different types of accessibility measures (see @geurs2004's review of the infrastructure-, place-, person- and utility-based approaches or @wu2020's *Unifying Access* paper). This post focuses on place-based accessibility - the potential to reach destinations from an origin place using the transportation network. To keep this post manageable, I am assuming some general knowledge of place-based accessibility and how {r5r} works. If you need a refresher, see the [Introduction to Urban Accessibility](https://ipeagit.github.io/intro_access_book/) book by Rafa and his Ipea team. Of my own work, see Higgins et al. -@higgins2022 and Higgins -@higgins2019. 
+
+But briefly, a place-based accessibility measure takes the general form:
+
+$$
+A_i = \sum_{j=1}^J O_j \times f(t_{ij})
+$$
+
+\noindent where the accessibility for place $i$, typically represented by a polygon, is the sum of opportunities $O$ at the destinations $j$ weighted by some function $f$ of the travel time required to reach them ($t_{ij}$). Place-based measures often utilize a cumulative (e.g. a 45-min travel time cut-off) or gravity-type (continuously declining) impedance function to account for the fact that there are costs associated with travel that make destinations farther away generally less desirable. 
+
+Accessibility analyses have a lot of uses, and even Statistics Canada has conducted some across the country through their [Spatial Access Measures](https://www150.statcan.gc.ca/n1/pub/27-26-0001/272600012023001-eng.htm) database. But assuming you want to do this yourself, let's jump into how we can get set up for calculating accessibility in the Toronto region.
+
+# Setup
+
+Because the {r5r} package uses Java, the first thing we have to do is allocate some memory for Java to operate in. Here I will allocate 8gb of memory, which should be enough for R5 to work with a network for the region:
+
+```{r}
+#| label: allocate java memory
+options(java.parameters = "-Xmx8G")
+```
+
+Next, load the packages we need
+
+```{r}
+#| label: load packages
+#| message: false
+#| warning: false
+
+# tidyverse
+library(tidyverse)
+library(fs)
+library(janitor)
+
+# spatial
+library(sf)
+library(tmap)
+
+# data and analysis
+library(cancensus)
+library(osmextract)
+library(TTS2016R)
+library(calendR)
+
+# routing and transit
+library(r5r)
+library(accessibility)
+library(tidytransit)
+```
+
+Finally, we will set up file path helpers to point to where we will keep our cache, R5 network graph, and travel time matrix:
+
+```{r}
+#| label: set up path helpers
+
+cache_path <- fs::dir_create("./cache")
+r5_graph_path <- fs::dir_create("./r5_graph")
+ttm_path <- fs::dir_create("./ttm")
+```
+
+# Data Collection
+## Origin Places
+
+Place-based measures of access require information on the locations of the origin places $i$. One popular option for origin and destination places is Census zones, such as Dissemination Areas (DAs) or Census Tracts (CTs). These can be obtained using the great {cancensus} package. Please see the vignettes from the [package documentation](https://mountainmath.github.io/cancensus/) to learn more about getting a free API key, finding census datasets, regions, and vectors. First, we need to provide an API key:
+
+```{r}
+#| label: set cancensus api key
+#| eval: false
+
+set_cancensus_api_key("<your API key>", install = TRUE)
+```
+
+I will also set the cache directory for this project to avoid multiple downloads:
+
+```{r}
+#| label: set cancensus cache
+#| message: false
+
+set_cancensus_cache_path(cache_path)
+```
+
+With this set, we can now get some data for CTs for the Toronto and Oshawa CMAs that traditionally make up the Greater Toronto Area:
+
+```{r}
+#| label: get cancensus ct data
+#| message: false
+
+census_data_ct <- get_census(
+    dataset = 'CA16', # <1>
+    regions = list(CMA = c("35532", "35535")), # <2>
+    level = 'CT', # <3>
+    geo_format = "sf", # <4>
+    use_cache = TRUE) |> 
+  janitor::clean_names() |> # <5>
+  st_transform(crs = 26918) |> # <6>
+  mutate(population_density = population / shape_area) # <7>
+```
+
+1.  Use the 2016 Census
+2.  Specify CMAs as the province code for Ontario ("35") and the CMA codes for Oshawa ("532") and Toronto ("535")
+3.  Get Census Tracts
+4.  Tell {cancensus} we want the CT geometries in {sf} format
+5.  Often Census data comes with capital letters and spaces in the names, so use {janitor} to clean the names up
+6.  Transform the {sf} geometries to the NAD 1983 Zone 17n projection for the region ([EPSG code `26917`](https://epsg.io/26917))
+7.  Mutate a population density (in people per $km^2$) column
+
+Let's see what this data looks like by mapping our `population_density` variable using {tmap}:
+
+```{r}
+#| label: fig-ct_population_density
+#| fig-cap: "Population Densities (2016) for CTs in the Greater Toronto Area"
+#| message: false
+#| code-fold: true
+
+tm_shape(census_data_ct) + 
+  tm_fill(
+    fill = "population_density", # <1>
+    fill.scale = tm_scale_intervals( # <2>
+      n = 10, # <3>
+      style = "jenks", # <4>
+      values = "viridis" # <5>
+      ), 
+    fill.legend = tm_legend(
+      title = "population density \n(people per km\U00B2)", # <6>
+      frame = FALSE # <7>
+      )
+    )
+```
+
+1.  tell {tmap} we want to map the `population_density` variable
+2.  use an interval-based classification scheme
+3.  with 10 breaks in the distribution
+4.  use the Jenks algorithm to set values for the 10 breaks
+5.  use the viridis colour scheme
+6.  set the legend title, including a line break using `\n` and the unicode character `\U00B2` for a superscript of 2
+7.  turn off the legend frame
+
+Within the Toronto region, another option for origin and destination places is the traffic analysis zones (TAZs) associated with the [Transportation Tomorrow Survey](https://dmg.utoronto.ca/tts-introduction/) (TTS). This survey covers the larger Greater Golden Horseshoe area with zones roughly similar in size to CTs. A recent package called {TTS2016R} has gathered these zones for easy use in R, and I will filter them down to just the zones in the Toronto and Oshawa CMAs:
+
+```{r}
+#| label: get tts zones
+
+tts_tazs <- TTS2016R::ggh_taz |> 
+  janitor::clean_names() |>
+  sf::st_transform(crs = 26917) |> 
+  filter(cmauid %in% c("532", "535")) |> 
+  mutate(
+    workers_density = workers / area,
+    jobs_density = jobs / area)
+```
+
+This survey covers the larger Greater Golden Horseshoe area with zones roughly similar in size to CTs and the {TTS2016R} package focuses on worker and job counts. Here's a map of the density of the working population:
+
+```{r}
+#| label: fig-taz_workers
+#| fig-cap: "Worker Densities (2016) for TAZs in the Greater Toronto Area"
+#| message: false
+#| code-fold: true
+
+tm_shape(tts_tazs) + 
+  tm_fill(
+    fill = "workers_density", 
+    fill.scale = tm_scale_intervals(
+      n = 10, #
+      style = "jenks", 
+      values = "viridis" 
+      ), 
+    fill.legend = tm_legend(
+      title = "worker density \n(people per km\U00B2)", 
+      frame = FALSE 
+      )
+    )
+```
+
+## Destination Opportunities
+
+We also need some destination places $j$, as well as some representation of the opportunities $O$ at the destinations. There are many different types of destination opportunities that can be considered for accessibility analysis. A popular option is employment counts at the destination zones. This data can be a bit hard to track down, but it is available for DAs from the 2016 Census via a custom extract of the Employed Labour Force by Place of Work hosted on Borealis [here](https://doi.org/10.5683/SP2/NTZFMT). This data comes as an Excel spreadsheet and will require some prep outside of R. 
+
+The TTS also captures employment counts at the destination TAZs and the survey data is available now for 2022 via the Data Management Group. Helpfully, the {TTS2016R} package offers job counts from the 2016 TTS at the TAZ level - here's a map of employment counts for the TAZs that make up the Toronto and Oshawa CMAs:
+
+```{r}
+#| label: fig-taz_employment
+#| fig-cap: "Employment Counts (2016) for TAZs in the Greater Toronto Area"
+#| message: false
+#| code-fold: true
+
+tm_shape(tts_tazs) + 
+  tm_fill(
+    fill = "jobs", 
+    fill.scale = tm_scale_intervals(
+      n = 10, #
+      style = "jenks", 
+      values = "viridis" 
+      ), 
+    fill.legend = tm_legend(
+      title = "employment count", 
+      frame = FALSE 
+      )
+    )
+```
+
+Beyond employment counts, other popular destinations include point of interest (POI) data for things like hospitals, grocery stores, etc. Often in these cases, the "opportunity" weight for a POI will be equal to one so that the accessibility analysis counts the number of a given POI type accessible from an origin place. One source for this for University students is DMTI's Enhanced Points of Interest database, which can be found on the [Scholar's GeoPortal](https://geo1.scholarsportal.info) after logging-in with your university credentials. This database can be filtered by the [North American Industry Classification System](https://www23.statcan.gc.ca/imdb/p3VD.pl?Function=getVD&TVD=1369825) (NAICS) codes for the POIs. We used the DMTI data in @yu2024.
+
+Alternatively, POI data collected from sources like Microsoft and Meta is also now available as an open data product through [Overture Maps](https://overturemaps.org) and can accessed via new R packages such as the {overtureR} [package](https://arthurgailes.github.io/overtureR/). Other POIs like parks and schools can be found from municipal (e.g. [Toronto](https://open.toronto.ca)), provincial ([Ontario](https://data.ontario.ca)), and federal open data portals. For example, Statistics Canada has been collecting a range of open data products through their [Linkable Open Data Environment](https://www.statcan.gc.ca/en/lode/databases) project.
+
+## OpenStreetMap File
+
+With the origin places and destination opportunities collected, next you need the core components that R5 and {r5r} need to create a routable network. The first of these is a street network from OpenStreetMap (OSM). The way I do this is through the {osmextract} package, which allows you to search by a place name. Pre-defined OSM extracts can be found for major places around the world. These are great because they are relatively small and won't cause an error associated with the maximum study area size of 975,000 $km^2$ in R5. Outside of R, you can also find metro area extracts from [Interline](https://app.interline.io/osm_extracts/interactive_view) (API key required).
+
+However, if a place extract does not exist, you might have to move up to the next level of geography, which, in the Canadian case, could entail downloading gigabytes of OSM data for an entire province. This is a much trickier situation and requires the use of tools like {rosmosis} (the easier but slower tool, see [here](https://dhersz.github.io/rosmosis/)) or {rosmium} (the faster but harder to install and use tool, see [here](https://ipeagit.github.io/rosmium/)) to clip the OSM network to a bounding box in R.
+
+In the Toronto case, there are two good extract options. The first is a \~70mb extract for the GTA available from "bbbike", but it really only covers the City of Toronto.
+
+```{r}
+osmextract::oe_match("Toronto")
+```
+
+For working in the GTA and/or to include cities like Hamilton, Waterloo, etc., there is also a great extract for the "Golden Horseshoe" available from "openstreetmap_fr":
+
+```{r}
+osmextract::oe_match("Golden Horseshoe")
+```
+
+Let's download the OSM extract for the Golden Horseshoe to our `r5_graph_path` by providing the "openstreetmap_fr" URL to the `oe_download()` function:
+
+```{r}
+#| label: download osm
+#| eval: false
+
+osmextract::oe_download(
+  file_url = "http://download.openstreetmap.fr/extracts/north-america/canada/ontario/golden_horseshoe-latest.osm.pbf",
+  provider = "openstreetmap_fr",
+  download_directory = r5_graph_path
+)
+```
+
+We can read in the lines layer of this OSM `.pbf` file as a simple features {sf} object using `oe_read()`, which translates the `.pbf` into a geopackage (`.gpkg`) in our `r5_graph_path` folder:
+
+```{r}
+#| label: read in osm data
+
+osm_lines_sf <- osmextract::oe_read(
+  file_path = fs::path(r5_graph_path, "openstreetmap_fr_golden_horseshoe-latest.osm.pbf"),
+  layer = "lines")
+```
+
+When plotting the major roadways on the map, we can see that this extract covers this part of Southern Ontario:
+
+```{r}
+#| label: fig-streets
+#| fig-cap: "Major Street Types from the Golden Horseshoe OSM Extract"
+#| message: false
+#| code-fold: true
+
+tm_shape(osm_lines_sf |> 
+           filter(highway %in% c("motorway", "primary", "secondary"))) +
+  tm_lines(
+    col = "highway", 
+    col.scale = tm_scale_categorical(values = "plasma"),
+    col.legend = tm_legend(
+      title = "street type", 
+      frame = FALSE 
+      )
+    )
+```
+
+## GTFS Data
+
+The second key input is General Transit Feed Specification (GTFS) static schedule files to enable transit routing. These can be found from a variety of sources, including municipal or agency open data portals. However, these are often only the most current schedule files. To better align with our 2016 place data, we can download GTFS files from other archival sources including:
+
+-   [transitfeeds](https://transitfeeds.com) which is great for historical data but is no longer current
+-   [mobility database](https://mobilitydatabase.org) which is replacing transitfeeds (I have not used yet)
+-   [transit.land](https://www.transit.land) a newer source, but it does require an API key to download historical files (free for hobbyist and academic use, see bottom of the [pricing page](https://www.transit.land/plans-pricing/))
+-   gtfs exchange was one of the earliest archives, you could still try to access it through the [Internet Archive](https://archive.org)
+
+For Toronto, the fragmentation of the region means there are a number of different transit providers (if you think Toronto is annoying, see Montreal!). This makes things tricky in that first you have to track them all down (the browse by region in transitfeeds and transit.land is good for this) but also - and this is critical - they have to all have some service calendar days that align with each other. 
+
+In the Toronto case, you can reliably get GTFS feeds for the major providers across the region back to about fall 2016 from transitfeeds, and I have collected the download URLs for feeds around September 2016 into this named list:
+
+```{r}
+gtfs_list <- list(
+  "brampton" = "https://transitfeeds.com/p/brampton-transit/35/20160818/download",
+  "burlington" = "https://transitfeeds.com/p/burlington-transit/294/20160906/download",
+  "durham" = "https://transitfeeds.com/p/durham-region-transit/642/20160824/download",
+  "go" = "https://transitfeeds.com/p/go-transit/32/20160906/download",
+  "mississauga" = "https://transitfeeds.com/p/miway/641/20160907/download",
+  "oakville" = "https://transitfeeds.com/p/oakville-transit/615/20160901/download",
+  "toronto" = "https://transitfeeds.com/p/ttc/33/20160829/download",
+  "york" = "https://transitfeeds.com/p/york-regional-transit/34/20160904/download"
+)
+```
+
+Next, I will pass this list to an `iwalk()` function from {purrr} for iteration with an index. The function iterates the `req_perform()` function for downloading files from the {httr} package and saves the output to the `r5_graph_path` folder:
+
+```{r}
+#| label: download feeds
+
+gtfs_list |> # <1>
+  purrr::iwalk(~ httr2::req_perform( # <2>
+    req = httr2::request(.x) |> # <3>
+      httr2::req_cache(path = cache_path), # <4>
+    path = fs::path(r5_graph_path, paste0(.y, ".zip"))) # <5>
+  )
+```
+
+1.  pass the `gtfs_list` into the pipeline
+2.  call the `req_perform()` function inside `iwalk()`
+3.  create a request object using the elements of the list (the URLs) represented as `.x`
+4.  I have added a cache option to cache the files to the `cache_path`
+5.  name the output `.zip` files using the list index (the names) represented as `.y` and save to the `r5_graph_path`
+
+We should now have our GTFS files and the OSM network in our `r5_graph_path` folder:
+
+```{r}
+fs::dir_tree(r5_graph_path, glob = "*.zip")
+```
+
+
+As a last step, let's verify that our service calendars do overlap. If they don't, the departure datetime that we pick for transit routing will omit any services that don't have scheduled operations on that day. To facilitate this, I have created a function called `check_gtfs_overlap()` that reads in a folder of GTFS files and returns their service calendars:
+
+```{r}
+#| label: define check_gtfs_overlap
+#| code-fold: true
+
+check_gtfs_overlap <- function(gtfs_folder) {
+  
+  # get a list of gtfs zip files in the gtfs directory
+  gtfs_zip_list <- fs::dir_ls(gtfs_folder, regexp = "*.zip")
+  
+  # get provider names from the file list
+  gtfs_zip_names <- fs::path_file(gtfs_zip_list) |> path_ext_remove()
+  
+  # read in gtfs files
+  gtfs_list <-
+    purrr::map(gtfs_zip_list, ~ tidytransit::read_gtfs(.)) |> purrr::set_names(gtfs_zip_names)
+  
+  # get service period start and end dates from gtfs files
+  gtfs_service_period <- gtfs_list |>
+    purrr::map( ~ data.frame(service_date = seq(
+      min(ymd(.$.$dates_services$date)),
+      max(ymd(.$.$dates_services$date)),
+    by = "day"))) |>
+    dplyr::bind_rows(.id = "service_name")
+  
+  # get count of services by day and identify overlaps
+  gtfs_service_overlap <- gtfs_service_period |>
+    dplyr::group_by(service_date) |>
+    dplyr::summarize(count = n()) |>
+    dplyr::mutate(
+      #overlap = case_when(count == length(gtfs_list) ~ 1, TRUE ~ 0)
+      # make more flexible - overlap as equal to max services
+      overlap = dplyr::case_when(count == max(count) ~ 1, TRUE ~ 0))
+  
+  # get a service peak around which to graph
+  service_density <-
+    stats::density(as.numeric(gtfs_service_period$service_date))
+  service_density_peak <-
+    lubridate::as_date(as.integer(service_density$x[which.max(service_density$y)]))
+  
+  # get start and end date of overlap period
+  gtfs_service_overlap_start <- gtfs_service_overlap |>
+    dplyr::filter(count == max(count)) |>
+    dplyr::summarize(min(service_date)) |>
+    dplyr::pull()
+  gtfs_service_overlap_end <- gtfs_service_overlap |>
+    dplyr::filter(count == max(count)) |>
+    dplyr::summarize(max(service_date)) |>
+    dplyr::pull()
+  gtfs_service_overlap_start_month <-
+    lubridate::floor_date(gtfs_service_overlap_start, "month")
+  gtfs_service_overlap_end_month <-
+    lubridate::ceiling_date(gtfs_service_overlap_end, "month") - days(1)
+  
+  # get special days in format CalendR expects - days from start of calendar period
+  special_days_vector <- gtfs_service_overlap |>
+    dplyr::mutate(special_day = (lubridate::interval(start = gtfs_service_overlap_start_month,
+                                  end = service_date) / lubridate::days(1)) + 1) |>
+    dplyr::filter(overlap == 1)
+  
+  # plot overlap gantt chart
+  overlap_plot <- 
+    ggplot2::ggplot(
+      gtfs_service_period |> dplyr::filter(
+        dplyr::between(
+          service_date,
+          left = add_with_rollback(service_density_peak, -base::months(6)),
+          right = add_with_rollback(service_density_peak, base::months(5)))),
+      aes(x = service_name, y = service_date, colour = service_name)) +
+    geom_line(linewidth = 10) +
+    geom_hline(
+      yintercept = as.numeric(gtfs_service_overlap_start),
+      linetype = "dashed",
+      colour = "grey50") +
+    geom_hline(
+      yintercept = as.numeric(gtfs_service_overlap_end),
+      linetype = "dashed",
+      colour = "grey50") +
+    coord_flip() +
+    theme_minimal() +
+    theme(legend.position = "none")
+  
+  # make overlap calendar
+  overlap_calendar <-
+    calendR::calendR(
+      from = gtfs_service_overlap_start_month,
+      to = gtfs_service_overlap_end_month,
+      special.days = special_days_vector$special_day,
+      special.col = "darkorange2",
+      subtitle = "GTFS Service Calendar Overlap",
+      weeknames = c("Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"))
+  
+  return(list("overlap_plot" = overlap_plot, "overlap_calendar" = overlap_calendar))
+}
+```
+
+Using this, we can now check overlap in calendars:
+
+```{r}
+#| label: check gtfs overlap
+#| warning: false
+
+gtfs_overlap <- check_gtfs_overlap(gtfs_folder = r5_graph_path) 
+```
+
+And view the `overlap_plot`:
+
+```{r}
+#| label: plot overlap
+gtfs_overlap |> pluck("overlap_plot")
+```
+
+Looks good, all of our services overlap around September. We can see the overlapping service calendar further below to pick a departure datetime.
+
+## Elevation
+
+One last optional step for routing is to collect an elevation surface raster for the study region. {r5r} and R5 can use this to estimate slope-aware travel times for walking. Toronto is pretty flat, particularly compared to say Hong Kong (see Higgins -@higgins2021). I am of the opinion that getting good estimates of slope for walking travel requires a very detailed elevation surface. However, getting a highly detailed elevation surface for the Golden Horseshoe study area would be quite intensive. Because of that, I am going to skip this part. But if you want to get an elevation surface, you can use the {elevatr} package and pass it either the street network {sf} object (slower) or polygons that bound the study area, like the Toronto and Oshawa CMA boundaries you could quickly get from {cancensus}.
+
+# Build Network
+
+With the OSM data and GTFS files with overlapping transit service calendars collected, we are ready to build the network using {r5r}:
+
+```{r}
+#| label: set up r5
+#| message: false
+
+r5_graph <- r5r::setup_r5(data_path = r5_graph_path)
+```
+
+# Get Travel Time Matrix
+
+The first thing we need to calculate transit accessibility is a travel time matrix. For this, {r5r} expects your input origins and destinations to be `POINT` geometries in the WGS 1984 coordinate reference system ([EPSG:4326](https://epsg.io/4326)) with a character field called `id`. We can prepare these now - let's use the CTs as origins and the TAZs (with employment counts) as the destinations:
+
+```{r}
+#| label: prepare origins and destinations
+#| warning: false
+
+origin_cts <- census_data_ct |> 
+  mutate(id = as.character(geo_uid)) |> # <1>
+  select(id, geometry) |> # <2>
+  st_centroid() |> # <3>
+  st_transform(crs = 4326) # <4>
+
+destination_tazs <- tts_tazs |> 
+  mutate(id = as.character(gta06)) |> 
+  select(id, jobs, geometry) |> # <5>
+  st_centroid() |> 
+  st_transform(crs = 4326)
+```
+1. `mutate` a new `id` field converting `geo_uid` to a character-type column
+2. `select` only the `id` and {sf} `geometry` columns
+3. convert the polygons to centroid points
+4. transform the `geometry` coordinates to WGS 1984
+5. also keep the `jobs` column for the destinations as these are our opportunities
+
+Which day and time should we use for our `departure_datetime` in {r5r} for transit routing? This is our overlapping service calendar:
+
+```{r}
+#| label: plot overlap calendar
+gtfs_overlap |> pluck("overlap_calendar")
+```
+
+How about September 13, 2016 at 8AM? We can now run the travel time matrix:
+
+```{r}
+#| label: get travel time matrix
+#| warning: false
+#| eval: false
+
+ttm <- r5r::travel_time_matrix(
+  r5r_core = r5_graph,
+  origins  = origin_cts,
+  destinations = destination_tazs,
+  mode = c("transit", "walk"),
+  departure_datetime = lubridate::ymd_hms("2016-09-13 08:00:00"),
+  max_trip_duration = 120,
+  progress = TRUE)
+```
+
+Although it is fast, you might want to save yourself from calculating a new travel time matrix in the future by saving it to disk. My method of choice is a `.parquet` file (or an Arrow Dataset for large matrices chunked by something like a region ID key) using the {arrow} package:
+
+```{r}
+#| label: save ttm
+#| eval: false
+
+ttm |> arrow::write_parquet(sink = fs::path(ttm_path, "ttm.parquet"))
+```
+
+# Calculate Accessibility
+
+With the travel time matrix complete, we're finally ready to calculate accessibility. The accessibility analysis you run from this point forward is going to be heavily dependent on your research questions and assumptions about travel behaviour, e.g. is this a (to use the terminology in @paez2012) more normative research question about levels of access that individuals and places should have? Perhaps a cumulative cut-off is appropriate to capture something like grocery stores within 15 minutes of travel. 
+
+Are you interested in taking a more positivistic approach by modelling actual travel behaviour patterns? Perhaps a gravity-based approach is best for modelling the potential for interaction with an impedance function that accounts for the decreasing propensity to travel with increasing travel time.
+
+## Using the {accessibility} package
+
+With that said, one straightforward way of doing this is to use the {accessibility} package prepared by Rafa and the team at Ipea (see [here](https://ipeagit.github.io/accessibility/)) which has a bunch of different options for calculating cumulative, gravity, and even competitive access measures. Let's give this a try with a 45-minute cumulative job accessibility analysis. 
+
+First we need our travel time matrix from disk:
+
+```{r}
+#| label: read ttm
+
+ttm <- arrow::read_parquet(fs::path(ttm_path, "ttm.parquet"))
+```
+
+Next, we can use the `cumulative_cutoff()` function to calculate access:
+
+```{r}
+cum_access_45 <- accessibility::cumulative_cutoff(
+  travel_matrix = ttm, # <1>
+  land_use_data = destination_tazs, # <2>
+  opportunity = "jobs", # <3>
+  travel_cost = "travel_time_p50", # <4>
+  cutoff = 45 # <5>
+)
+```
+1. the travel time matrix
+2. the destination data with some opportunity column
+3. the name of the opportunities column in the land use data
+4. the name of the travel time column in the travel time matrix
+5. the cut-off value in minutes of travel time
+
+This handled a lot of the work for us, joining the destination opportunities to the travel time matrix, calculating the impedance-weighted opportunities, and summing the accessibility scores by the origins. We can see the output visually after joining the `cum_access_45` dataframe back to the original `census_data_ct`:
+
+
+```{r}
+census_data_ct <- census_data_ct |> 
+  left_join(cum_access_45, by = c("geo_uid" = "id")) |> 
+  rename(access_jobs_45 = jobs)
+```
+
+And making a map with {tmap}:
+
+```{r}
+#| label: fig-access_cum_45
+#| fig-cap: "Accessibility to Employment (2016) within 45-minutes by Transit"
+#| code-fold: true
+tm_shape(census_data_ct) + 
+  tm_fill(
+    fill = "access_jobs_45", 
+    fill.scale = tm_scale_intervals( 
+      n = 10, 
+      style = "jenks", 
+      values = "viridis" 
+      ), 
+    fill.legend = tm_legend(
+      title = "accessibility to employment \n(45-min by transit)", 
+      frame = FALSE 
+      )
+    )
+```
+
+## Doing it manually
+
+If you want to customize your analysis (or are interested in seeing how this all works), you can do this the manual way too. First, join the destination opportunities to the travel time matrix:
+
+```{r}
+ttm <- ttm |> 
+  left_join(destination_tazs, by = c("to_id" = "id"))
+```
+
+Second, for the impedance function, let's adopt a more positivistic approach and utilize a log-logistic function calibrated to commuting trips in Toronto from @kapatsila2023:
+
+$$
+f = \frac{1}{ 1+ (\frac{t_{ij}}{\text{med}(\tau)}) ^{\beta}}
+$$
+
+The function takes two parameter inputs: $\text{med}(\tau)$ corresponds to the median travel time for commuting trips and $beta$ is a decay parameter calibrated to trip flows in the paper. For transit commuting in Toronto, $\text{med}(\tau) = 49$ and $beta = 4.4856$. We can re-write this as an R function:
+
+```{r}
+log_logistic_f <- function(t_ij, med_tau, beta) {
+  1 / (1 + (t_ij / med_tau)^beta)
+}
+```
+
+From @fig-impedance_fs we can see how the log-logistic function results in a much more continuously-declining weight as travel time increases compared to the cumulative cut-off at 45-minutes.
+
+```{r}
+#| label: fig-impedance_fs
+#| fig-cap: "Impedance weight by travel time for the cumulative and log-logistic functions"
+#| code-fold: true
+
+data.frame(t_ij = seq(1, 120, by = .1)) |>
+  mutate(
+    weight_cum_45 = case_when(t_ij <= 45 ~ 1, .default = 0),
+    weight_log_logistic = log_logistic_f(t_ij, med_tau = 49, beta = 4.4856)
+  ) |>
+  pivot_longer(
+    cols = starts_with("weight_"),
+    names_to = "impedance_f",
+    names_prefix = "weight_",
+    values_to = "weight"
+  ) |>
+  ggplot(aes(x = t_ij, y = weight, colour = impedance_f)) +
+  geom_line() +
+  scale_x_continuous(name = "travel time (minutes)", limits = c(0, 120), breaks = seq(0, 120, by = 15)) +
+  ylab("impedance weight") +
+  theme_minimal() +
+  theme(legend.position = "top")
+```
+
+Third, use this function to calculate the impedance-weighted opportunities in the travel time matrix:
+
+```{r}
+ttm <- ttm |>
+  mutate(access_jobs_ll = jobs * log_logistic_f(
+    t_ij = travel_time_p50,
+    med_tau = 49,
+    beta = 4.4856
+  ))
+```
+
+Fourth, summarize the accessibility values by the origins:
+
+```{r}
+access_log_logistic <- ttm |> 
+  group_by(from_id) |> 
+  summarize(access_jobs_ll = sum(access_jobs_ll))
+```
+
+Finally, we can now join our accessibility scores back to the original CTs:
+
+```{r}
+census_data_ct <- census_data_ct |> 
+  left_join(access_log_logistic, by = c("geo_uid" = "from_id"))
+```
+
+And map our results:
+
+```{r}
+#| label: fig-access_ll
+#| fig-cap: "Accessibility to Employment (2016) with Continuous Decay"
+#| code-fold: true
+tm_shape(census_data_ct) + 
+  tm_fill(
+    fill = "access_jobs_ll", 
+    fill.scale = tm_scale_intervals( 
+      n = 10, 
+      style = "jenks", 
+      values = "viridis" 
+      ), 
+    fill.legend = tm_legend(
+      title = "accessibility to employment \n(log-logistic function)", 
+      frame = FALSE 
+      )
+    )
+```
+
+# Wrap-up
+
+There you have it! An accessibility analysis in Toronto from front-to-back done in two ways. {r5r} and R5 are multi-modal, so you can repeat the same steps to analyze walking, cycling, and car travel too, for any other type of origin and/or destination type. This is just a starting-point for more advanced treatments of accessibility analysis - on that front, stay tuned. I have a busy sabbatical year planned on that front!

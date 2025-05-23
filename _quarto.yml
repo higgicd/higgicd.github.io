@@ -15,18 +15,21 @@ website:
     title: false
     right:
       #- about.qmd
-      - icon: twitter
-        aria-label: twitter
-        href: https://twitter.com/higgicd
+      #- icon: twitter
+      #  aria-label: twitter
+      #  href: https://twitter.com/higgicd
+      - icon: linkedin
+        aria-label: linkedin
+        href: https://www.linkedin.com/in/higgicd/
       - icon: square-fill
-        aria-label: bsky
+        aria-label: bluesky
         href: https://bsky.app/profile/higgicd.bsky.social
-      - icon: github
-        aria-label: github
-        href: https://github.com/higgicd
       - icon: mortarboard-fill
         aria-label: scholar
         href: https://scholar.google.ca/citations?user=BvBZbXMAAAAJ
+      - icon: github
+        aria-label: github
+        href: https://github.com/higgicd
     left:
       - href: index.qmd
         text: Home
@@ -38,6 +41,7 @@ format:
   html:
     theme: 
       light: cosmo
+    #fontsize: 1.2em
     css: styles.css
     toc: true
 

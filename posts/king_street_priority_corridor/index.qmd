@@ -16,7 +16,7 @@ Robert Arku (PhD Student at the University of Toronto) and I are exploring the a
 knitr::include_graphics("./kstpc_banner.jpg")
 ```
 
-*Photo by *[TheTrolleyPole](https://upload.wikimedia.org/wikipedia/commons/3/31/King_Street_Pilot_Project_-_Planters_%26_furniture_near_Charlotte_St.jpg) *via Wikimedia Commons*
+*Photo by* [TheTrolleyPole](https://upload.wikimedia.org/wikipedia/commons/3/31/King_Street_Pilot_Project_-_Planters_%26_furniture_near_Charlotte_St.jpg) *via Wikimedia Commons*
 
 ## King Street Transit Priority Corridor
 
