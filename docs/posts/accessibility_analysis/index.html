@@ -294,7 +294,7 @@ window.Quarto = {
 
 
 
-<p>Over this past academic year, we were lucky to host Dr.&nbsp;Rafael Pereira as a Bousfield Distinguished Visiting Professor in the Department of Geography and Planning. Rafa earned his PhD at Oxford and has published dozens of great academic papers. He is also the lead of the data science team at the Institute for Applied Economic Research (Ipea) which has published the {r5r} <a href="https://github.com/ipeaGIT/r5r">package</a>, which enables rapid realistic routing on multimodal transport networks by connecting R with the open source <a href="https://github.com/conveyal/r5">R5 Routing Engine</a> from Conveyal. Beyond his Bousfield Lecture on <a href="https://www.geography.utoronto.ca/news/bousfield-lecture-presented-rafael-pereira">Advancing Urban Accessibility for Inclusive Cities</a>, he also led a crash-course workshop on <a href="https://ipeagit.github.io/access_workshop_toronto_2025/">Urban Accessibility with R</a> where students and practitioners in attendance got some hands-on experience using R for accessibility analysis with some data for Brazil.</p>
+<p>Over this past academic year, we were honoured to host Dr.&nbsp;Rafael Pereira as a Bousfield Distinguished Visiting Professor in the Department of Geography and Planning. Rafa earned his PhD at Oxford and has published dozens of great academic papers. He is also the lead of the data science team at the Institute for Applied Economic Research (Ipea) which has published the {r5r} <a href="https://github.com/ipeaGIT/r5r">package</a> that enables rapid realistic routing on multimodal transport networks by connecting R with the open source <a href="https://github.com/conveyal/r5">R5 Routing Engine</a> from <a href="https://conveyal.com">Conveyal</a>. Beyond his Bousfield Lecture on <a href="https://www.geography.utoronto.ca/news/bousfield-lecture-presented-rafael-pereira">Advancing Urban Accessibility for Inclusive Cities</a>, he also led a crash-course workshop on <a href="https://ipeagit.github.io/access_workshop_toronto_2025/">Urban Accessibility with R</a> where students and practitioners in attendance got some hands-on experience using R for accessibility analysis with some data for Brazil.</p>
 <p>Between the workshop, my teaching of courses like GGRC30 Advanced GIS and JPG1400 Advanced Quantitative Methods where students are increasingly conducting accessibility analyses and often needing some guidance, and the joking by Steven Farber that I should be local tech support for {r5r}, I’ve put together a collection of the first steps I undertake in nearly every analysis of accessibility in the City of Toronto and larger region. Together, these serve as a nice little introductory vignette to the topic in the local context.</p>
 <section id="what-is-accessibility" class="level1">
 <h1>What is Accessibility?</h1>
@@ -694,7 +694,7 @@ Figure&nbsp;4: Major Street Types from the Golden Horseshoe OSM Extract
 </dl>
 </div>
 </div>
-<p>We should now have our GTFS files and the OSM network in our <code>r5_graph_path</code> folder:</p>
+<p>We should now have our GTFS <code>.zip</code> files in our <code>r5_graph_path</code> folder:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_tree</span>(r5_graph_path, <span class="at">glob =</span> <span class="st">"*.zip"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -994,7 +994,7 @@ Figure&nbsp;5: Accessibility to Employment (2016) within 45-minutes by Transit
 <p><span class="math display">\[
 f = \frac{1}{ 1+ (\frac{t_{ij}}{\text{med}(\tau)}) ^{\beta}}
 \]</span></p>
-<p>The function takes two parameter inputs: <span class="math inline">\(\text{med}(\tau)\)</span> corresponds to the median travel time for commuting trips and <span class="math inline">\(beta\)</span> is a decay parameter calibrated to trip flows in the paper. For transit commuting in Toronto, <span class="math inline">\(\text{med}(\tau) = 49\)</span> and <span class="math inline">\(beta = 4.4856\)</span>. We can re-write this as an R function:</p>
+<p>The function takes two parameter inputs: <span class="math inline">\(\text{med}(\tau)\)</span> corresponds to the median travel time for commuting trips and <span class="math inline">\(\beta\)</span> is a decay parameter calibrated to trip flows in the paper. For transit commuting in Toronto, <span class="math inline">\(\text{med}(\tau) = 49\)</span> and <span class="math inline">\(\beta = 4.4856\)</span>. We can re-write this as an R function:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>log_logistic_f <span class="ot">&lt;-</span> <span class="cf">function</span>(t_ij, med_tau, beta) {</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> (t_ij <span class="sc">/</span> med_tau)<span class="sc">^</span>beta)</span>

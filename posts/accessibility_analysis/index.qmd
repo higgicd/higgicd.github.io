@@ -7,7 +7,7 @@ bibliography: references.bib
 code-annotations: hover
 ---
 
-Over this past academic year, we were lucky to host Dr. Rafael Pereira as a Bousfield Distinguished Visiting Professor in the Department of Geography and Planning. Rafa earned his PhD at Oxford and has published dozens of great academic papers. He is also the lead of the data science team at the Institute for Applied Economic Research (Ipea) which has published the {r5r} [package](https://github.com/ipeaGIT/r5r), which enables rapid realistic routing on multimodal transport networks by connecting R with the open source [R5 Routing Engine](https://github.com/conveyal/r5) from Conveyal. Beyond his Bousfield Lecture on [Advancing Urban Accessibility for Inclusive Cities](https://www.geography.utoronto.ca/news/bousfield-lecture-presented-rafael-pereira), he also led a crash-course workshop on [Urban Accessibility with R](https://ipeagit.github.io/access_workshop_toronto_2025/) where students and practitioners in attendance got some hands-on experience using R for accessibility analysis with some data for Brazil.
+Over this past academic year, we were honoured to host Dr. Rafael Pereira as a Bousfield Distinguished Visiting Professor in the Department of Geography and Planning. Rafa earned his PhD at Oxford and has published dozens of great academic papers. He is also the lead of the data science team at the Institute for Applied Economic Research (Ipea) which has published the {r5r} [package](https://github.com/ipeaGIT/r5r) that enables rapid realistic routing on multimodal transport networks by connecting R with the open source [R5 Routing Engine](https://github.com/conveyal/r5) from [Conveyal](https://conveyal.com). Beyond his Bousfield Lecture on [Advancing Urban Accessibility for Inclusive Cities](https://www.geography.utoronto.ca/news/bousfield-lecture-presented-rafael-pereira), he also led a crash-course workshop on [Urban Accessibility with R](https://ipeagit.github.io/access_workshop_toronto_2025/) where students and practitioners in attendance got some hands-on experience using R for accessibility analysis with some data for Brazil.
 
 Between the workshop, my teaching of courses like GGRC30 Advanced GIS and JPG1400 Advanced Quantitative Methods where students are increasingly conducting accessibility analyses and often needing some guidance, and the joking by Steven Farber that I should be local tech support for {r5r}, I've put together a collection of the first steps I undertake in nearly every analysis of accessibility in the City of Toronto and larger region. Together, these serve as a nice little introductory vignette to the topic in the local context.
 
@@ -316,14 +316,13 @@ gtfs_list |> # <1>
     path = fs::path(r5_graph_path, paste0(.y, ".zip"))) # <5>
   )
 ```
-
 1.  pass the `gtfs_list` into the pipeline
 2.  call the `req_perform()` function inside `iwalk()`
 3.  create a request object using the elements of the list (the URLs) represented as `.x`
 4.  I have added a cache option to cache the files to the `cache_path`
 5.  name the output `.zip` files using the list index (the names) represented as `.y` and save to the `r5_graph_path`
 
-We should now have our GTFS files and the OSM network in our `r5_graph_path` folder:
+We should now have our GTFS `.zip` files in our `r5_graph_path` folder:
 
 ```{r}
 fs::dir_tree(r5_graph_path, glob = "*.zip")
@@ -556,7 +555,6 @@ cum_access_45 <- accessibility::cumulative_cutoff(
 
 This handled a lot of the work for us, joining the destination opportunities to the travel time matrix, calculating the impedance-weighted opportunities, and summing the accessibility scores by the origins. We can see the output visually after joining the `cum_access_45` dataframe back to the original `census_data_ct`:
 
-
 ```{r}
 census_data_ct <- census_data_ct |> 
   left_join(cum_access_45, by = c("geo_uid" = "id")) |> 
@@ -599,7 +597,7 @@ $$
 f = \frac{1}{ 1+ (\frac{t_{ij}}{\text{med}(\tau)}) ^{\beta}}
 $$
 
-The function takes two parameter inputs: $\text{med}(\tau)$ corresponds to the median travel time for commuting trips and $beta$ is a decay parameter calibrated to trip flows in the paper. For transit commuting in Toronto, $\text{med}(\tau) = 49$ and $beta = 4.4856$. We can re-write this as an R function:
+The function takes two parameter inputs: $\text{med}(\tau)$ corresponds to the median travel time for commuting trips and $\beta$ is a decay parameter calibrated to trip flows in the paper. For transit commuting in Toronto, $\text{med}(\tau) = 49$ and $\beta = 4.4856$. We can re-write this as an R function:
 
 ```{r}
 log_logistic_f <- function(t_ij, med_tau, beta) {
