@@ -13,7 +13,7 @@ Between the workshop, my teaching of courses like GGRC30 Advanced GIS and JPG140
 
 # What is Accessibility?
 
-To jump right into the topic, transportation accessibility reflects the ease with which individuals can reach destinations using the transportation network. There are many different types of accessibility measures (see @geurs2004's review of the infrastructure-, place-, person- and utility-based approaches or @wu2020's *Unifying Access* paper). This post focuses on place-based accessibility - the potential to reach destinations from an origin place using the transportation network. To keep this post manageable, I am assuming some general knowledge of place-based accessibility and how {r5r} works. If you need a refresher, see the [Introduction to Urban Accessibility](https://ipeagit.github.io/intro_access_book/) book by Rafa and his Ipea team. Of my own work, see Higgins et al. -@higgins2022 and Higgins -@higgins2019. 
+To jump right in, transportation accessibility reflects the ease with which individuals can reach destinations using the transportation network. There are many different types of accessibility measures (see @geurs2004's review of the infrastructure-, place-, person- and utility-based approaches or @wu2020's *Unifying Access* paper). This post focuses on place-based accessibility - the potential to reach destinations from an origin place using the transportation network. To keep this post manageable, I am assuming some general knowledge of place-based accessibility and how {r5r} works. If you need a refresher, see the [Introduction to Urban Accessibility](https://ipeagit.github.io/intro_access_book/) book by Rafa and his Ipea team. Of my own work, see Higgins et al. -@higgins2022 and Higgins -@higgins2019. 
 
 But briefly, a place-based accessibility measure takes the general form:
 
@@ -106,7 +106,7 @@ census_data_ct <- get_census(
     geo_format = "sf", # <4>
     use_cache = TRUE) |> 
   janitor::clean_names() |> # <5>
-  st_transform(crs = 26918) |> # <6>
+  st_transform(crs = 26917) |> # <6>
   mutate(population_density = population / shape_area) # <7>
 ```
 
@@ -163,7 +163,7 @@ tts_tazs <- TTS2016R::ggh_taz |>
     jobs_density = jobs / area)
 ```
 
-This survey covers the larger Greater Golden Horseshoe area with zones roughly similar in size to CTs and the {TTS2016R} package focuses on worker and job counts. Here's a map of the density of the working population:
+The {TTS2016R} package focuses on worker and job counts. Here's a map of the density of the working population:
 
 ```{r}
 #| label: fig-taz_workers
