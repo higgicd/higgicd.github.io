@@ -223,7 +223,7 @@ With the origin places and destination opportunities collected, next you need th
 
 However, if a place extract does not exist, you might have to move up to the next level of geography, which, in the Canadian case, could entail downloading gigabytes of OSM data for an entire province. This is a much trickier situation and requires the use of tools like {rosmosis} (the easier but slower tool, see [here](https://dhersz.github.io/rosmosis/)) or {rosmium} (the faster but harder to install and use tool, see [here](https://ipeagit.github.io/rosmium/)) to clip the OSM network to a bounding box in R.
 
-In the Toronto case, there are two good extract options. The first is a \~70mb extract for the GTA available from "bbbike", but it really only covers the City of Toronto.
+In the Toronto case, there are two good extract options. The first is a \~70mb extract available from "bbbike", but it really only covers the City of Toronto.
 
 ```{r}
 osmextract::oe_match("Toronto")
