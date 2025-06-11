@@ -229,7 +229,7 @@ In the Toronto case, there are two good extract options. The first is a \~70mb e
 osmextract::oe_match("Toronto")
 ```
 
-For working in the GTA and/or to include cities like Hamilton, Waterloo, etc., there is also a great extract for the "Golden Horseshoe" available from "openstreetmap_fr":
+For working in the GTA and/or to include cities like Hamilton, etc., there is also a great extract for the "Golden Horseshoe" available from "openstreetmap_fr":
 
 ```{r}
 osmextract::oe_match("Golden Horseshoe")
@@ -520,9 +520,9 @@ ttm |> arrow::write_parquet(sink = fs::path(ttm_path, "ttm.parquet"))
 
 # Calculate Accessibility
 
-With the travel time matrix complete, we're finally ready to calculate accessibility. The accessibility analysis you run from this point forward is going to be heavily dependent on your research questions and assumptions about travel behaviour, e.g. is this a (to use the terminology in @paez2012) more normative research question about levels of access that individuals and places should have? Perhaps a cumulative cut-off is appropriate to capture something like grocery stores within 15 minutes of travel. 
+With the travel time matrix complete, we're finally ready to calculate accessibility. The accessibility analysis you run from this point forward is going to be heavily dependent on your research questions and assumptions about travel behaviour, e.g. is this a (to use the terminology in @paez2012) more normative research question about levels of access that individuals and places should have? Perhaps a cumulative cut-off is appropriate to capture something like grocery stores within 15 minutes of travel (e.g. @yu2024). 
 
-Are you interested in taking a more positivistic approach by modelling actual travel behaviour patterns? Perhaps a gravity-based approach is best for modelling the potential for interaction with an impedance function that accounts for the decreasing propensity to travel with increasing travel time.
+Are you interested in taking a more positivistic approach by modelling actual travel behaviour patterns? Perhaps a gravity-based approach is best for modelling the potential for interaction with an impedance function that accounts for the decreasing propensity to travel with increasing travel time (e.g. Higgins et al. -@higgins2025).
 
 ## Using the {accessibility} package
 
@@ -680,4 +680,4 @@ tm_shape(census_data_ct) +
 
 # Wrap-up
 
-There you have it! An accessibility analysis in Toronto from front-to-back done in two ways. {r5r} and R5 are multi-modal, so you can repeat the same steps to analyze walking, cycling, and car travel too, for any other type of origin and/or destination type. This is just a starting-point for more advanced treatments of accessibility analysis - on that front, stay tuned. I have a busy sabbatical year planned on that front!
+There you have it! An accessibility analysis in Toronto from front-to-back done in two ways. {r5r} and R5 are multi-modal, so you can repeat the same steps to analyze walking, cycling, and car travel too, for any other type of origin and/or destination type. This is just a starting-point for more advanced treatments of accessibility analysis - on that front, stay tuned. I have a busy sabbatical year planned in that regard!

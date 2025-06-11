@@ -564,7 +564,7 @@ $file_size
 [1] 72915302</code></pre>
 </div>
 </div>
-<p>For working in the GTA and/or to include cities like Hamilton, Waterloo, etc., there is also a great extract for the “Golden Horseshoe” available from “openstreetmap_fr”:</p>
+<p>For working in the GTA and/or to include cities like Hamilton, etc., there is also a great extract for the “Golden Horseshoe” available from “openstreetmap_fr”:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>osmextract<span class="sc">::</span><span class="fu">oe_match</span>(<span class="st">"Golden Horseshoe"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -902,8 +902,8 @@ Figure&nbsp;4: Major Street Types from the Golden Horseshoe OSM Extract
 </section>
 <section id="calculate-accessibility" class="level1">
 <h1>Calculate Accessibility</h1>
-<p>With the travel time matrix complete, we’re finally ready to calculate accessibility. The accessibility analysis you run from this point forward is going to be heavily dependent on your research questions and assumptions about travel behaviour, e.g.&nbsp;is this a (to use the terminology in <span class="citation" data-cites="paez2012">Páez, Scott, and Morency (<a href="#ref-paez2012" role="doc-biblioref">2012</a>)</span>) more normative research question about levels of access that individuals and places should have? Perhaps a cumulative cut-off is appropriate to capture something like grocery stores within 15 minutes of travel.</p>
-<p>Are you interested in taking a more positivistic approach by modelling actual travel behaviour patterns? Perhaps a gravity-based approach is best for modelling the potential for interaction with an impedance function that accounts for the decreasing propensity to travel with increasing travel time.</p>
+<p>With the travel time matrix complete, we’re finally ready to calculate accessibility. The accessibility analysis you run from this point forward is going to be heavily dependent on your research questions and assumptions about travel behaviour, e.g.&nbsp;is this a (to use the terminology in <span class="citation" data-cites="paez2012">Páez, Scott, and Morency (<a href="#ref-paez2012" role="doc-biblioref">2012</a>)</span>) more normative research question about levels of access that individuals and places should have? Perhaps a cumulative cut-off is appropriate to capture something like grocery stores within 15 minutes of travel (e.g. <span class="citation" data-cites="yu2024">Yu and Higgins (<a href="#ref-yu2024" role="doc-biblioref">2024</a>)</span>).</p>
+<p>Are you interested in taking a more positivistic approach by modelling actual travel behaviour patterns? Perhaps a gravity-based approach is best for modelling the potential for interaction with an impedance function that accounts for the decreasing propensity to travel with increasing travel time (e.g.&nbsp;Higgins et al. <span class="citation" data-cites="higgins2025">(<a href="#ref-higgins2025" role="doc-biblioref">2025</a>)</span>).</p>
 <section id="using-the-accessibility-package" class="level2">
 <h2 class="anchored" data-anchor-id="using-the-accessibility-package">Using the {accessibility} package</h2>
 <p>With that said, one straightforward way of doing this is to use the {accessibility} package prepared by Rafa and the team at Ipea (see <a href="https://ipeagit.github.io/accessibility/">here</a>) which has a bunch of different options for calculating cumulative, gravity, and even competitive access measures. Let’s give this a try with a 45-minute cumulative job accessibility analysis.</p>
@@ -1090,7 +1090,7 @@ Figure&nbsp;7: Accessibility to Employment (2016) with Continuous Decay
 </section>
 <section id="wrap-up" class="level1">
 <h1>Wrap-up</h1>
-<p>There you have it! An accessibility analysis in Toronto from front-to-back done in two ways. {r5r} and R5 are multi-modal, so you can repeat the same steps to analyze walking, cycling, and car travel too, for any other type of origin and/or destination type. This is just a starting-point for more advanced treatments of accessibility analysis - on that front, stay tuned. I have a busy sabbatical year planned on that front!</p>
+<p>There you have it! An accessibility analysis in Toronto from front-to-back done in two ways. {r5r} and R5 are multi-modal, so you can repeat the same steps to analyze walking, cycling, and car travel too, for any other type of origin and/or destination type. This is just a starting-point for more advanced treatments of accessibility analysis - on that front, stay tuned. I have a busy sabbatical year planned in that regard!</p>
 
 
 
@@ -1105,6 +1105,9 @@ Higgins, Christopher D. 2021. <span>“Hiking with Tobler: Tracking Movement and
 </div>
 <div id="ref-higgins2019" class="csl-entry" role="listitem">
 Higgins, Christopher D. 2019. <span>“Accessibility Toolbox for r and ArcGIS.”</span> <em>Transport Findings</em>, May. <a href="https://doi.org/10.32866/8416">https://doi.org/10.32866/8416</a>.
+</div>
+<div id="ref-higgins2025" class="csl-entry" role="listitem">
+Higgins, Christopher D., Robert Nutifafa Arku, Steven Farber, and Eric J. Miller. 2025. <span>“Multimodal Accessibility and the Capitalization of Realized Access by Car and Transit in Housing Prices Across Canada.”</span> <em>Annals of the American Association of Geographers</em>, May, 1–26. <a href="https://doi.org/10.1080/24694452.2025.2495075">https://doi.org/10.1080/24694452.2025.2495075</a>.
 </div>
 <div id="ref-higgins2022" class="csl-entry" role="listitem">
 Higgins, Christopher D., Matthew Palm, Amber DeJohn, Luna Xi, James Vaughan, Steven Farber, Michael Widener, and Eric Miller. 2022. <span>“Calculating Place-Based Transit Accessibility: Methods, Tools and Algorithmic Dependence.”</span> <em>Journal of Transport and Land Use</em> 15 (1). <a href="https://doi.org/10.5198/jtlu.2022.2012">https://doi.org/10.5198/jtlu.2022.2012</a>.
