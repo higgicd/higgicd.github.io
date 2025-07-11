@@ -1,6 +1,6 @@
 ---
 title: "Christopher D. Higgins"
-description: "Assistant Professor, University of Toronto Scarborough"
+description: "Associate Professor, University of Toronto Scarborough"
 listing:
   contents: posts
   sort: "date desc"
@@ -12,7 +12,7 @@ page-layout: full
 title-block-banner: true
 ---
 
-# About 
+# About
 
 I am a quantitative geographer whose research is focused on the relationship between form and function in cities. Using the tools and methods of GIS/geographic data science, I capture and model the physical form and infrastructure of the city, its urban networks and the flows of people, goods, and information they facilitate, and the use of the city as an area or volume for engaging in activities. By providing a window into how the dynamic state of the city impacts and is impacted by social, environmental, and economic processes, my work seeks to better inform policy and planning interventions and promote more sustainable urban outcomes. Research areas to date include spatial and spatio-temporal analyses of:
 
