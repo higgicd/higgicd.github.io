@@ -185,7 +185,7 @@ OK, let's see what we are working with by making a map of population counts arou
 
 ```{r}
 #| label: fig-pop_density
-#| fig-cap: "Population Counts (2021) for DAs in the City of Toronto"
+#| fig-cap: "Population Counts (2021) for DBs along the Finch West LRT"
 #| code-fold: true
 #| warning: false
 fwlrt_line_buffer <- fwlrt_line |> 
@@ -333,7 +333,7 @@ route_pre_eb |>
   gt::gt()
 ```
 
-Based on this, it does look like the LRT is scheduled to take 46 minutes end-to-end for this trip, which is a little bit more than the scheduled travel time for the 36 Finch West bus in 2018 (these estimates reflect the in-vehicle time based on scheduled service levels and omit the walking time and wait time that might be required between departing at 8AM and when the first bus arrives).
+Based on this, it does look like the LRT (yes it is labelled as a `TRAM` in the GTFS) is scheduled to take 46 minutes end-to-end for this trip, which is a little bit more than the scheduled travel time for the 36 Finch West bus in 2018 (these estimates reflect the in-vehicle time based on scheduled service levels and omit the walking time and wait time that might be required between departing at 8AM and when the first bus arrives).
 
 ### Accessibility Analysis
 
