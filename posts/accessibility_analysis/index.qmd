@@ -13,7 +13,7 @@ Between the workshop, my teaching of courses like GGRC30 Advanced GIS and JPG140
 
 # What is Accessibility?
 
-To jump right in, transportation accessibility reflects the ease with which individuals can reach destinations using the transportation network. There are many different types of accessibility measures (see @geurs2004's review of the infrastructure-, place-, person- and utility-based approaches or @wu2020's *Unifying Access* paper). This post focuses on place-based accessibility - the potential to reach destinations from an origin place using the transportation network. To keep this post manageable, I am assuming some general knowledge of place-based accessibility and how {r5r} works. If you need a refresher, see the [Introduction to Urban Accessibility](https://ipeagit.github.io/intro_access_book/) book by Rafa and his Ipea team. Of my own work, see Higgins et al. -@higgins2022 and Higgins -@higgins2019. 
+To jump right in, transportation accessibility reflects the ease with which individuals can reach destinations using the transportation network. There are many different types of accessibility measures (see @geurs2004's review of the infrastructure-, place-, person- and utility-based approaches or @wu2020's *Unifying Access* paper). This post focuses on place-based accessibility - the potential to reach destinations from an origin place using the transportation network. To keep this post manageable, I am assuming some general knowledge of place-based accessibility and how {r5r} works. If you need a refresher, see the [Introduction to Urban Accessibility](https://ipeagit.github.io/intro_access_book/) book by Rafa and his Ipea team. Of my own work, see Higgins et al. [-@higgins2022] and Higgins [-@higgins2019].
 
 But briefly, a place-based accessibility measure takes the general form:
 
@@ -21,7 +21,7 @@ $$
 A_i = \sum_{j=1}^J O_j \times f(t_{ij})
 $$
 
-\noindent where the accessibility for place $i$, typically represented by a polygon, is the sum of opportunities $O$ at the destinations $j$ weighted by some function $f$ of the travel time required to reach them ($t_{ij}$). Place-based measures often utilize a cumulative (e.g. a 45-min travel time cut-off) or gravity-type (continuously declining) impedance function to account for the fact that there are costs associated with travel that make destinations farther away generally less desirable. 
+\noindent where the accessibility for place $i$, typically represented by a polygon, is the sum of opportunities $O$ at the destinations $j$ weighted by some function $f$ of the travel time required to reach them ($t_{ij}$). Place-based measures often utilize a cumulative (e.g. a 45-min travel time cut-off) or gravity-type (continuously declining) impedance function to account for the fact that there are costs associated with travel that make destinations farther away generally less desirable.
 
 Accessibility analyses have a lot of uses, and even Statistics Canada has conducted some across the country through their [Spatial Access Measures](https://www150.statcan.gc.ca/n1/pub/27-26-0001/272600012023001-eng.htm) database. But assuming you want to do this yourself, let's jump into how we can get set up for calculating accessibility in the Toronto region.
 
@@ -73,6 +73,7 @@ ttm_path <- fs::dir_create("./ttm")
 ```
 
 # Data Collection
+
 ## Origin Places
 
 Place-based measures of access require information on the locations of the origin places $i$. One popular option for origin and destination places is Census zones, such as Dissemination Areas (DAs) or Census Tracts (CTs). These can be obtained using the great {cancensus} package. Please see the vignettes from the [package documentation](https://mountainmath.github.io/cancensus/) to learn more about getting a free API key, finding census datasets, regions, and vectors. First, we need to provide an API key:
@@ -188,7 +189,7 @@ tm_shape(tts_tazs) +
 
 ## Destination Opportunities
 
-We also need some destination places $j$, as well as some representation of the opportunities $O$ at the destinations. There are many different types of destination opportunities that can be considered for accessibility analysis. A popular option is employment counts at the destination zones. This data can be a bit hard to track down, but it is available for DAs from the 2016 Census via a custom extract of the Employed Labour Force by Place of Work hosted on Borealis [here](https://doi.org/10.5683/SP2/NTZFMT). This data comes as an Excel spreadsheet and will require some prep outside of R. 
+We also need some destination places $j$, as well as some representation of the opportunities $O$ at the destinations. There are many different types of destination opportunities that can be considered for accessibility analysis. A popular option is employment counts at the destination zones. This data can be a bit hard to track down, but it is available for DAs from the 2016 Census via a custom extract of the Employed Labour Force by Place of Work hosted on Borealis [here](https://doi.org/10.5683/SP2/NTZFMT). This data comes as an Excel spreadsheet and will require some prep outside of R.
 
 The TTS also captures employment counts at the destination TAZs and the survey data is available now for 2022 via the Data Management Group. Helpfully, the {TTS2016R} package offers job counts from the 2016 TTS at the TAZ level - here's a map of employment counts for the TAZs that make up the Toronto and Oshawa CMAs:
 
@@ -287,7 +288,7 @@ The second key input is General Transit Feed Specification (GTFS) static schedul
 -   [transit.land](https://www.transit.land) a newer source, but it does require an API key to download historical files (free for hobbyist and academic use, see bottom of the [pricing page](https://www.transit.land/plans-pricing/))
 -   gtfs exchange was one of the earliest archives, you could still try to access it through the [Internet Archive](https://archive.org)
 
-For Toronto, the fragmentation of the region means there are a number of different transit providers (if you think Toronto is annoying, see Montreal!). This makes things tricky in that first you have to track them all down (the browse by region in transitfeeds and transit.land is good for this) but also - and this is critical - they have to all have some service calendar days that align with each other. 
+For Toronto, the fragmentation of the region means there are a number of different transit providers (if you think Toronto is annoying, see Montreal!). This makes things tricky in that first you have to track them all down (the browse by region in transitfeeds and transit.land is good for this) but also - and this is critical - they have to all have some service calendar days that align with each other.
 
 In the Toronto case, you can reliably get GTFS feeds for the major providers across the region back to about fall 2016 from transitfeeds, and I have collected the download URLs for feeds around September 2016 into this named list:
 
@@ -316,6 +317,7 @@ gtfs_list |> # <1>
     path = fs::path(r5_graph_path, paste0(.y, ".zip"))) # <5>
   )
 ```
+
 1.  pass the `gtfs_list` into the pipeline
 2.  call the `req_perform()` function inside `iwalk()`
 3.  create a request object using the elements of the list (the URLs) represented as `.x`
@@ -328,7 +330,6 @@ We should now have our GTFS `.zip` files in our `r5_graph_path` folder:
 fs::dir_tree(r5_graph_path, glob = "*.zip")
 ```
 
-
 As a last step, let's verify that our service calendars do overlap. If they don't, the departure datetime that we pick for transit routing will omit any services that don't have scheduled operations on that day. To facilitate this, I have created a function called `check_gtfs_overlap()` that reads in a folder of GTFS files and returns their service calendars:
 
 ```{r}
@@ -336,23 +337,22 @@ As a last step, let's verify that our service calendars do overlap. If they don'
 #| code-fold: true
 
 check_gtfs_overlap <- function(gtfs_folder) {
-  
   # get a list of gtfs zip files in the gtfs directory
   gtfs_zip_list <- fs::dir_ls(gtfs_folder, regexp = "*.zip")
   
   # get provider names from the file list
-  gtfs_zip_names <- fs::path_file(gtfs_zip_list) |> path_ext_remove()
+  gtfs_zip_names <- fs::path_file(gtfs_zip_list) |> fs::path_ext_remove()
   
   # read in gtfs files
-  gtfs_list <-
-    purrr::map(gtfs_zip_list, ~ tidytransit::read_gtfs(.)) |> purrr::set_names(gtfs_zip_names)
+  gtfs_list <- purrr::map(gtfs_zip_list, ~ tidytransit::read_gtfs(.)) |> purrr::set_names(gtfs_zip_names)
   
   # get service period start and end dates from gtfs files
   gtfs_service_period <- gtfs_list |>
-    purrr::map( ~ data.frame(service_date = seq(
-      min(ymd(.$.$dates_services$date)),
-      max(ymd(.$.$dates_services$date)),
-    by = "day"))) |>
+    purrr::map( ~ data.frame(service_date = seq(min(
+      ymd(.$.$dates_services$date)
+    ), max(
+      ymd(.$.$dates_services$date)
+    ), by = "day"))) |>
     dplyr::bind_rows(.id = "service_name")
   
   # get count of services by day and identify overlaps
@@ -362,65 +362,106 @@ check_gtfs_overlap <- function(gtfs_folder) {
     dplyr::mutate(
       #overlap = case_when(count == length(gtfs_list) ~ 1, TRUE ~ 0)
       # make more flexible - overlap as equal to max services
-      overlap = dplyr::case_when(count == max(count) ~ 1, TRUE ~ 0))
+      overlap = dplyr::case_when(count == max(count) ~ 1, TRUE ~ 0)
+    )
   
   # get a service peak around which to graph
-  service_density <-
-    stats::density(as.numeric(gtfs_service_period$service_date))
-  service_density_peak <-
-    lubridate::as_date(as.integer(service_density$x[which.max(service_density$y)]))
+  service_density <- stats::density(as.numeric(gtfs_service_period$service_date))
+  
+  service_density_peak <- lubridate::as_date(as.integer(service_density$x[which.max(service_density$y)]))
   
   # get start and end date of overlap period
   gtfs_service_overlap_start <- gtfs_service_overlap |>
     dplyr::filter(count == max(count)) |>
     dplyr::summarize(min(service_date)) |>
     dplyr::pull()
+  
   gtfs_service_overlap_end <- gtfs_service_overlap |>
     dplyr::filter(count == max(count)) |>
     dplyr::summarize(max(service_date)) |>
     dplyr::pull()
-  gtfs_service_overlap_start_month <-
-    lubridate::floor_date(gtfs_service_overlap_start, "month")
-  gtfs_service_overlap_end_month <-
-    lubridate::ceiling_date(gtfs_service_overlap_end, "month") - days(1)
   
-  # get special days in format CalendR expects - days from start of calendar period
-  special_days_vector <- gtfs_service_overlap |>
-    dplyr::mutate(special_day = (lubridate::interval(start = gtfs_service_overlap_start_month,
-                                  end = service_date) / lubridate::days(1)) + 1) |>
-    dplyr::filter(overlap == 1)
+  gtfs_service_overlap_start_month <- lubridate::floor_date(gtfs_service_overlap_start, "month")
   
-  # plot overlap gantt chart
-  overlap_plot <- 
-    ggplot2::ggplot(
-      gtfs_service_period |> dplyr::filter(
-        dplyr::between(
-          service_date,
-          left = add_with_rollback(service_density_peak, -base::months(6)),
-          right = add_with_rollback(service_density_peak, base::months(5)))),
-      aes(x = service_name, y = service_date, colour = service_name)) +
+  gtfs_service_overlap_end_month <- lubridate::ceiling_date(gtfs_service_overlap_end, "month") - days(1)
+  
+  # 2. plot overlap gantt chart
+  overlap_plot <- gtfs_service_period |>
+    dplyr::filter(
+      dplyr::between(
+        service_date,
+        left = add_with_rollback(service_density_peak, -base::months(6)),
+        right = add_with_rollback(service_density_peak, base::months(5))
+      )
+    ) |>
+    ggplot2::ggplot(aes(x = service_name, y = service_date, colour = service_name)) +
     geom_line(linewidth = 10) +
-    geom_hline(
-      yintercept = as.numeric(gtfs_service_overlap_start),
-      linetype = "dashed",
-      colour = "grey50") +
-    geom_hline(
-      yintercept = as.numeric(gtfs_service_overlap_end),
-      linetype = "dashed",
-      colour = "grey50") +
+    geom_hline(yintercept = gtfs_service_overlap_start,
+               linetype = "dashed",
+               colour = "grey50") +
+    geom_hline(yintercept = gtfs_service_overlap_end,
+               linetype = "dashed",
+               colour = "grey50") +
     coord_flip() +
     theme_minimal() +
     theme(legend.position = "none")
   
-  # make overlap calendar
-  overlap_calendar <-
-    calendR::calendR(
-      from = gtfs_service_overlap_start_month,
-      to = gtfs_service_overlap_end_month,
-      special.days = special_days_vector$special_day,
-      special.col = "darkorange2",
-      subtitle = "GTFS Service Calendar Overlap",
-      weeknames = c("Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"))
+  # 3. plot overlap calendar
+  overlap_days <- gtfs_service_overlap |>
+    dplyr::filter(overlap == 1)
+  
+  overlap_calendar <- tibble(
+    service_date = seq(
+      gtfs_service_overlap_start_month,
+      gtfs_service_overlap_end_month,
+      by = "day"
+    )
+  ) |>
+    mutate(
+      day = mday(service_date),
+      month = month(service_date, label = TRUE, abbr = FALSE),
+      weekday = wday(service_date, label = TRUE, abbr = TRUE),
+      
+      # Calculate week of month (example logic, adjust as needed)
+      week_of_month = ceiling((day + wday(floor_date(service_date, "month"), week_start = 7) - 1) / 7)
+    ) |>
+    # Ensure correct weekday order (e.g., Mon-Sun)
+    mutate(weekday = factor(
+      weekday,
+      levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
+    )) |>
+    left_join(overlap_days, by = "service_date") |>
+    mutate(overlap = replace_na(overlap, 0)) |>
+    ggplot(aes(
+      x = weekday,
+      y = -week_of_month, # -week_of_month to arrange weeks top-down
+      fill = factor(overlap)
+    )) + 
+    geom_tile(color = "white") + # Color for tile borders
+    geom_text(aes(label = day), size = 3, color = "black") +
+    facet_wrap( ~ month, ncol = 3, scales = "free") + # Facet by month
+    scale_fill_manual(
+      values = c("0" = "grey95", "1" = "darkorange2"),
+      labels = c("0" = "Limited service", "1" = "Overlapping service days"),
+      name = "Service level",
+    ) +
+    labs(title = "GTFS Service Calendar Overlap") +
+    theme_minimal() +
+    theme(
+      axis.title = element_blank(),
+      axis.text.y = element_blank(),
+      axis.text.x = element_text(vjust = 1),
+      axis.ticks = element_blank(),
+      panel.grid = element_blank(),
+      strip.text = element_text(face = "bold", size = 12),
+      plot.title = element_text(hjust = 0.5, face = "bold"),
+      panel.border = element_rect(
+        color = "grey90",
+        fill = NA,
+        linewidth = 0.8
+      ),
+      legend.position = "bottom"
+    )
   
   return(list("overlap_plot" = overlap_plot, "overlap_calendar" = overlap_calendar))
 }
@@ -446,7 +487,7 @@ Looks good, all of our services overlap around September. We can see the overlap
 
 ## Elevation
 
-One last optional step for routing is to collect an elevation surface raster for the study region. {r5r} and R5 can use this to estimate slope-aware travel times for walking. Toronto is pretty flat, particularly compared to say Hong Kong (see Higgins -@higgins2021). I am of the opinion that getting good estimates of slope for walking travel requires a very detailed elevation surface. However, getting a highly detailed elevation surface for the Golden Horseshoe study area would be quite intensive. Because of that, I am going to skip this part. But if you want to get an elevation surface, you can use the {elevatr} package and pass it either the street network {sf} object (slower) or polygons that bound the study area, like the Toronto and Oshawa CMA boundaries you could quickly get from {cancensus}.
+One last optional step for routing is to collect an elevation surface raster for the study region. {r5r} and R5 can use this to estimate slope-aware travel times for walking. Toronto is pretty flat, particularly compared to say Hong Kong (see Higgins [-@higgins2021]). I am of the opinion that getting good estimates of slope for walking travel requires a very detailed elevation surface. However, getting a highly detailed elevation surface for the Golden Horseshoe study area would be quite intensive. Because of that, I am going to skip this part. But if you want to get an elevation surface, you can use the {elevatr} package and pass it either the street network {sf} object (slower) or polygons that bound the study area, like the Toronto and Oshawa CMA boundaries you could quickly get from {cancensus}.
 
 # Build Network
 
@@ -479,11 +520,12 @@ destination_tazs <- tts_tazs |>
   st_centroid() |> 
   st_transform(crs = 4326)
 ```
-1. `mutate` a new `id` field converting `geo_uid` to a character-type column
-2. `select` only the `id` and {sf} `geometry` columns
-3. convert the polygons to centroid points
-4. transform the `geometry` coordinates to WGS 1984
-5. also keep the `jobs` column for the destinations as these are our opportunities
+
+1.  `mutate` a new `id` field converting `geo_uid` to a character-type column
+2.  `select` only the `id` and {sf} `geometry` columns
+3.  convert the polygons to centroid points
+4.  transform the `geometry` coordinates to WGS 1984
+5.  also keep the `jobs` column for the destinations as these are our opportunities
 
 Which day and time should we use for our `departure_datetime` in {r5r} for transit routing? This is our overlapping service calendar:
 
@@ -520,13 +562,13 @@ ttm |> arrow::write_parquet(sink = fs::path(ttm_path, "ttm.parquet"))
 
 # Calculate Accessibility
 
-With the travel time matrix complete, we're finally ready to calculate accessibility. The accessibility analysis you run from this point forward is going to be heavily dependent on your research questions and assumptions about travel behaviour, e.g. is this a (to use the terminology in @paez2012) more normative research question about levels of access that individuals and places should have? Perhaps a cumulative cut-off is appropriate to capture something like grocery stores within 15 minutes of travel (e.g. @yu2024). 
+With the travel time matrix complete, we're finally ready to calculate accessibility. The accessibility analysis you run from this point forward is going to be heavily dependent on your research questions and assumptions about travel behaviour, e.g. is this a (to use the terminology in @paez2012) more normative research question about levels of access that individuals and places should have? Perhaps a cumulative cut-off is appropriate to capture something like grocery stores within 15 minutes of travel (e.g. @yu2024).
 
-Are you interested in taking a more positivistic approach by modelling actual travel behaviour patterns? Perhaps a gravity-based approach is best for modelling the potential for interaction with an impedance function that accounts for the decreasing propensity to travel with increasing travel time (e.g. Higgins et al. -@higgins2025).
+Are you interested in taking a more positivistic approach by modelling actual travel behaviour patterns? Perhaps a gravity-based approach is best for modelling the potential for interaction with an impedance function that accounts for the decreasing propensity to travel with increasing travel time (e.g. Higgins et al. [-@higgins2025]).
 
 ## Using the {accessibility} package
 
-With that said, one straightforward way of doing this is to use the {accessibility} package prepared by Rafa and the team at Ipea (see [here](https://ipeagit.github.io/accessibility/)) which has a bunch of different options for calculating cumulative, gravity, and even competitive access measures. Let's give this a try with a 45-minute cumulative job accessibility analysis. 
+With that said, one straightforward way of doing this is to use the {accessibility} package prepared by Rafa and the team at Ipea (see [here](https://ipeagit.github.io/accessibility/)) which has a bunch of different options for calculating cumulative, gravity, and even competitive access measures. Let's give this a try with a 45-minute cumulative job accessibility analysis.
 
 First we need our travel time matrix from disk:
 
@@ -547,11 +589,12 @@ cum_access_45 <- accessibility::cumulative_cutoff(
   cutoff = 45 # <5>
 )
 ```
-1. the travel time matrix
-2. the destination data with some opportunity column
-3. the name of the opportunities column in the land use data
-4. the name of the travel time column in the travel time matrix
-5. the cut-off value in minutes of travel time
+
+1.  the travel time matrix
+2.  the destination data with some opportunity column
+3.  the name of the opportunities column in the land use data
+4.  the name of the travel time column in the travel time matrix
+5.  the cut-off value in minutes of travel time
 
 This handled a lot of the work for us, joining the destination opportunities to the travel time matrix, calculating the impedance-weighted opportunities, and summing the accessibility scores by the origins. We can see the output visually after joining the `cum_access_45` dataframe back to the original `census_data_ct`:
 

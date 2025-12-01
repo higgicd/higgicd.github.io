@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/slow_transit/index.html",
       "/posts/accessibility_analysis/index.html",
       "/posts/accelerating_r/index.html",
       "/posts/king_street_priority_corridor/index.html",
