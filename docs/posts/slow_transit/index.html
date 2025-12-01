@@ -425,7 +425,7 @@ Figure&nbsp;1: ChatGPT’s “It’s Happening meme with the Finch West LRT”
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    technology <span class="sc">==</span> <span class="st">"Subway"</span> <span class="sc">|</span> <span class="fu">str_starts</span>(technology, <span class="st">"GO"</span>)</span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>OK, let’s see what we are working with by making a map of population density around the Finch West LRT:</p>
+<p>OK, let’s see what we are working with by making a map of population counts around the Finch West LRT:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -447,7 +447,7 @@ Figure&nbsp;1: ChatGPT’s “It’s Happening meme with the Finch West LRT”
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"aw_population"</span>,</span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill.scale =</span> <span class="fu">tm_scale_intervals</span>(</span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> <span class="dv">10</span>,</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">style =</span> <span class="st">"fisher"</span>,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">style =</span> <span class="st">"jenks"</span>,</span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">values =</span> <span class="st">"viridis"</span></span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill_alpha =</span> .<span class="dv">85</span>,</span>
@@ -459,7 +459,7 @@ Figure&nbsp;1: ChatGPT’s “It’s Happening meme with the Finch West LRT”
 <span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(existing_rt) <span class="sc">+</span> <span class="fu">tm_lines</span>(<span class="at">col =</span> <span class="st">"grey35"</span>, <span class="at">lwd =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
 <span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(fwlrt_line) <span class="sc">+</span> <span class="fu">tm_lines</span>(<span class="at">col =</span> <span class="st">"grey"</span>, <span class="at">lwd =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
 <span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(fwlrt_stops) <span class="sc">+</span> <span class="fu">tm_dots</span>(<span class="at">size =</span> .<span class="dv">5</span>, <span class="at">fill =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(fwlrt_stops) <span class="sc">+</span> <span class="fu">tm_dots</span>(<span class="at">size =</span> .<span class="dv">15</span>, <span class="at">fill =</span> <span class="st">"white"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(fwlrt_stops) <span class="sc">+</span> <span class="fu">tm_dots</span>(<span class="at">size =</span> .<span class="dv">15</span>, <span class="at">fill =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-pop_density" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -585,23 +585,23 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
 </figcaption>
 <div aria-describedby="tbl-routes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="lpvdkoxrwa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lpvdkoxrwa table {
+<div id="lapjunxjbx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lapjunxjbx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lpvdkoxrwa thead, #lpvdkoxrwa tbody, #lpvdkoxrwa tfoot, #lpvdkoxrwa tr, #lpvdkoxrwa td, #lpvdkoxrwa th {
+#lapjunxjbx thead, #lapjunxjbx tbody, #lapjunxjbx tfoot, #lapjunxjbx tr, #lapjunxjbx td, #lapjunxjbx th {
   border-style: none;
 }
 
-#lpvdkoxrwa p {
+#lapjunxjbx p {
   margin: 0;
   padding: 0;
 }
 
-#lpvdkoxrwa .gt_table {
+#lapjunxjbx .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -627,12 +627,12 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   border-left-color: #D3D3D3;
 }
 
-#lpvdkoxrwa .gt_caption {
+#lapjunxjbx .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lpvdkoxrwa .gt_title {
+#lapjunxjbx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -644,7 +644,7 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   border-bottom-width: 0;
 }
 
-#lpvdkoxrwa .gt_subtitle {
+#lapjunxjbx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -656,7 +656,7 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   border-top-width: 0;
 }
 
-#lpvdkoxrwa .gt_heading {
+#lapjunxjbx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -668,13 +668,13 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   border-right-color: #D3D3D3;
 }
 
-#lpvdkoxrwa .gt_bottom_border {
+#lapjunxjbx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lpvdkoxrwa .gt_col_headings {
+#lapjunxjbx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -689,7 +689,7 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   border-right-color: #D3D3D3;
 }
 
-#lpvdkoxrwa .gt_col_heading {
+#lapjunxjbx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -709,7 +709,7 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   overflow-x: hidden;
 }
 
-#lpvdkoxrwa .gt_column_spanner_outer {
+#lapjunxjbx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -721,15 +721,15 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   padding-right: 4px;
 }
 
-#lpvdkoxrwa .gt_column_spanner_outer:first-child {
+#lapjunxjbx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lpvdkoxrwa .gt_column_spanner_outer:last-child {
+#lapjunxjbx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lpvdkoxrwa .gt_column_spanner {
+#lapjunxjbx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -741,11 +741,11 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   width: 100%;
 }
 
-#lpvdkoxrwa .gt_spanner_row {
+#lapjunxjbx .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lpvdkoxrwa .gt_group_heading {
+#lapjunxjbx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -771,7 +771,7 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   text-align: left;
 }
 
-#lpvdkoxrwa .gt_empty_group_heading {
+#lapjunxjbx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -786,15 +786,15 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   vertical-align: middle;
 }
 
-#lpvdkoxrwa .gt_from_md > :first-child {
+#lapjunxjbx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lpvdkoxrwa .gt_from_md > :last-child {
+#lapjunxjbx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lpvdkoxrwa .gt_row {
+#lapjunxjbx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -813,7 +813,7 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   overflow-x: hidden;
 }
 
-#lpvdkoxrwa .gt_stub {
+#lapjunxjbx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -826,7 +826,7 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   padding-right: 5px;
 }
 
-#lpvdkoxrwa .gt_stub_row_group {
+#lapjunxjbx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -840,15 +840,15 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   vertical-align: top;
 }
 
-#lpvdkoxrwa .gt_row_group_first td {
+#lapjunxjbx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lpvdkoxrwa .gt_row_group_first th {
+#lapjunxjbx .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lpvdkoxrwa .gt_summary_row {
+#lapjunxjbx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -858,16 +858,16 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   padding-right: 5px;
 }
 
-#lpvdkoxrwa .gt_first_summary_row {
+#lapjunxjbx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lpvdkoxrwa .gt_first_summary_row.thick {
+#lapjunxjbx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lpvdkoxrwa .gt_last_summary_row {
+#lapjunxjbx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -877,7 +877,7 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   border-bottom-color: #D3D3D3;
 }
 
-#lpvdkoxrwa .gt_grand_summary_row {
+#lapjunxjbx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -887,7 +887,7 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   padding-right: 5px;
 }
 
-#lpvdkoxrwa .gt_first_grand_summary_row {
+#lapjunxjbx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -897,7 +897,7 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   border-top-color: #D3D3D3;
 }
 
-#lpvdkoxrwa .gt_last_grand_summary_row_top {
+#lapjunxjbx .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -907,11 +907,11 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   border-bottom-color: #D3D3D3;
 }
 
-#lpvdkoxrwa .gt_striped {
+#lapjunxjbx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lpvdkoxrwa .gt_table_body {
+#lapjunxjbx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -920,7 +920,7 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   border-bottom-color: #D3D3D3;
 }
 
-#lpvdkoxrwa .gt_footnotes {
+#lapjunxjbx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -934,7 +934,7 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   border-right-color: #D3D3D3;
 }
 
-#lpvdkoxrwa .gt_footnote {
+#lapjunxjbx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -943,7 +943,7 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   padding-right: 5px;
 }
 
-#lpvdkoxrwa .gt_sourcenotes {
+#lapjunxjbx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -957,7 +957,7 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   border-right-color: #D3D3D3;
 }
 
-#lpvdkoxrwa .gt_sourcenote {
+#lapjunxjbx .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -965,72 +965,72 @@ Table&nbsp;1: Route-based Travel Times between Humber and Finch West
   padding-right: 5px;
 }
 
-#lpvdkoxrwa .gt_left {
+#lapjunxjbx .gt_left {
   text-align: left;
 }
 
-#lpvdkoxrwa .gt_center {
+#lapjunxjbx .gt_center {
   text-align: center;
 }
 
-#lpvdkoxrwa .gt_right {
+#lapjunxjbx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lpvdkoxrwa .gt_font_normal {
+#lapjunxjbx .gt_font_normal {
   font-weight: normal;
 }
 
-#lpvdkoxrwa .gt_font_bold {
+#lapjunxjbx .gt_font_bold {
   font-weight: bold;
 }
 
-#lpvdkoxrwa .gt_font_italic {
+#lapjunxjbx .gt_font_italic {
   font-style: italic;
 }
 
-#lpvdkoxrwa .gt_super {
+#lapjunxjbx .gt_super {
   font-size: 65%;
 }
 
-#lpvdkoxrwa .gt_footnote_marks {
+#lapjunxjbx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lpvdkoxrwa .gt_asterisk {
+#lapjunxjbx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lpvdkoxrwa .gt_indent_1 {
+#lapjunxjbx .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lpvdkoxrwa .gt_indent_2 {
+#lapjunxjbx .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lpvdkoxrwa .gt_indent_3 {
+#lapjunxjbx .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lpvdkoxrwa .gt_indent_4 {
+#lapjunxjbx .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lpvdkoxrwa .gt_indent_5 {
+#lapjunxjbx .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lpvdkoxrwa .katex-display {
+#lapjunxjbx .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lpvdkoxrwa div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#lapjunxjbx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1272,23 +1272,23 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="cthkyjbrhh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cthkyjbrhh table {
+<div id="vyywupyccg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vyywupyccg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cthkyjbrhh thead, #cthkyjbrhh tbody, #cthkyjbrhh tfoot, #cthkyjbrhh tr, #cthkyjbrhh td, #cthkyjbrhh th {
+#vyywupyccg thead, #vyywupyccg tbody, #vyywupyccg tfoot, #vyywupyccg tr, #vyywupyccg td, #vyywupyccg th {
   border-style: none;
 }
 
-#cthkyjbrhh p {
+#vyywupyccg p {
   margin: 0;
   padding: 0;
 }
 
-#cthkyjbrhh .gt_table {
+#vyywupyccg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1314,12 +1314,12 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   border-left-color: #D3D3D3;
 }
 
-#cthkyjbrhh .gt_caption {
+#vyywupyccg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cthkyjbrhh .gt_title {
+#vyywupyccg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1331,7 +1331,7 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   border-bottom-width: 0;
 }
 
-#cthkyjbrhh .gt_subtitle {
+#vyywupyccg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1343,7 +1343,7 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   border-top-width: 0;
 }
 
-#cthkyjbrhh .gt_heading {
+#vyywupyccg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1355,13 +1355,13 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   border-right-color: #D3D3D3;
 }
 
-#cthkyjbrhh .gt_bottom_border {
+#vyywupyccg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cthkyjbrhh .gt_col_headings {
+#vyywupyccg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1376,7 +1376,7 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   border-right-color: #D3D3D3;
 }
 
-#cthkyjbrhh .gt_col_heading {
+#vyywupyccg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1396,7 +1396,7 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   overflow-x: hidden;
 }
 
-#cthkyjbrhh .gt_column_spanner_outer {
+#vyywupyccg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1408,15 +1408,15 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   padding-right: 4px;
 }
 
-#cthkyjbrhh .gt_column_spanner_outer:first-child {
+#vyywupyccg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cthkyjbrhh .gt_column_spanner_outer:last-child {
+#vyywupyccg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cthkyjbrhh .gt_column_spanner {
+#vyywupyccg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1428,11 +1428,11 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   width: 100%;
 }
 
-#cthkyjbrhh .gt_spanner_row {
+#vyywupyccg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cthkyjbrhh .gt_group_heading {
+#vyywupyccg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1458,7 +1458,7 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   text-align: left;
 }
 
-#cthkyjbrhh .gt_empty_group_heading {
+#vyywupyccg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1473,15 +1473,15 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   vertical-align: middle;
 }
 
-#cthkyjbrhh .gt_from_md > :first-child {
+#vyywupyccg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cthkyjbrhh .gt_from_md > :last-child {
+#vyywupyccg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cthkyjbrhh .gt_row {
+#vyywupyccg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1500,7 +1500,7 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   overflow-x: hidden;
 }
 
-#cthkyjbrhh .gt_stub {
+#vyywupyccg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1513,7 +1513,7 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   padding-right: 5px;
 }
 
-#cthkyjbrhh .gt_stub_row_group {
+#vyywupyccg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1527,15 +1527,15 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   vertical-align: top;
 }
 
-#cthkyjbrhh .gt_row_group_first td {
+#vyywupyccg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cthkyjbrhh .gt_row_group_first th {
+#vyywupyccg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cthkyjbrhh .gt_summary_row {
+#vyywupyccg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1545,16 +1545,16 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   padding-right: 5px;
 }
 
-#cthkyjbrhh .gt_first_summary_row {
+#vyywupyccg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cthkyjbrhh .gt_first_summary_row.thick {
+#vyywupyccg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cthkyjbrhh .gt_last_summary_row {
+#vyywupyccg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1564,7 +1564,7 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   border-bottom-color: #D3D3D3;
 }
 
-#cthkyjbrhh .gt_grand_summary_row {
+#vyywupyccg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1574,7 +1574,7 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   padding-right: 5px;
 }
 
-#cthkyjbrhh .gt_first_grand_summary_row {
+#vyywupyccg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1584,7 +1584,7 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   border-top-color: #D3D3D3;
 }
 
-#cthkyjbrhh .gt_last_grand_summary_row_top {
+#vyywupyccg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1594,11 +1594,11 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   border-bottom-color: #D3D3D3;
 }
 
-#cthkyjbrhh .gt_striped {
+#vyywupyccg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cthkyjbrhh .gt_table_body {
+#vyywupyccg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1607,7 +1607,7 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   border-bottom-color: #D3D3D3;
 }
 
-#cthkyjbrhh .gt_footnotes {
+#vyywupyccg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1621,7 +1621,7 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   border-right-color: #D3D3D3;
 }
 
-#cthkyjbrhh .gt_footnote {
+#vyywupyccg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1630,7 +1630,7 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   padding-right: 5px;
 }
 
-#cthkyjbrhh .gt_sourcenotes {
+#vyywupyccg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1644,7 +1644,7 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   border-right-color: #D3D3D3;
 }
 
-#cthkyjbrhh .gt_sourcenote {
+#vyywupyccg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1652,72 +1652,72 @@ Figure&nbsp;3: Change in accessibility from late 2018 to 2025
   padding-right: 5px;
 }
 
-#cthkyjbrhh .gt_left {
+#vyywupyccg .gt_left {
   text-align: left;
 }
 
-#cthkyjbrhh .gt_center {
+#vyywupyccg .gt_center {
   text-align: center;
 }
 
-#cthkyjbrhh .gt_right {
+#vyywupyccg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cthkyjbrhh .gt_font_normal {
+#vyywupyccg .gt_font_normal {
   font-weight: normal;
 }
 
-#cthkyjbrhh .gt_font_bold {
+#vyywupyccg .gt_font_bold {
   font-weight: bold;
 }
 
-#cthkyjbrhh .gt_font_italic {
+#vyywupyccg .gt_font_italic {
   font-style: italic;
 }
 
-#cthkyjbrhh .gt_super {
+#vyywupyccg .gt_super {
   font-size: 65%;
 }
 
-#cthkyjbrhh .gt_footnote_marks {
+#vyywupyccg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cthkyjbrhh .gt_asterisk {
+#vyywupyccg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cthkyjbrhh .gt_indent_1 {
+#vyywupyccg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cthkyjbrhh .gt_indent_2 {
+#vyywupyccg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cthkyjbrhh .gt_indent_3 {
+#vyywupyccg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cthkyjbrhh .gt_indent_4 {
+#vyywupyccg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cthkyjbrhh .gt_indent_5 {
+#vyywupyccg .gt_indent_5 {
   text-indent: 25px;
 }
 
-#cthkyjbrhh .katex-display {
+#vyywupyccg .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#cthkyjbrhh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vyywupyccg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

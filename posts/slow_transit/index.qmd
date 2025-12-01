@@ -130,6 +130,7 @@ census_data_db <- cancensus::get_census(
 For the destinations, let's keep it simple and use employment counts captured by the 2016 Transportation Tomorrow Survey (TTS) using the {TTS2016R} package (which you can install from the [github repository](https://github.com/soukhova/TTS2016R) using {remotes}):
 
 ```{r}
+#| label: get tts tazs
 tts_tazs <- TTS2016R::ggh_taz |> 
   janitor::clean_names() |>
   sf::st_transform(crs = 26917) |> 
@@ -180,7 +181,7 @@ existing_rt <- rt_lines |>
     )
 ```
 
-OK, let's see what we are working with by making a map of population density around the Finch West LRT:
+OK, let's see what we are working with by making a map of population counts around the Finch West LRT:
 
 ```{r}
 #| label: fig-pop_density
@@ -205,7 +206,7 @@ tm_shape(census_data_db, bbox = fwlrt_line_buffer) + tm_polygons(col = "grey99",
     fill = "aw_population",
     fill.scale = tm_scale_intervals(
       n = 10,
-      style = "fisher",
+      style = "jenks",
       values = "viridis"
     ),
     fill_alpha = .85,
@@ -217,7 +218,7 @@ tm_shape(census_data_db, bbox = fwlrt_line_buffer) + tm_polygons(col = "grey99",
   tm_shape(existing_rt) + tm_lines(col = "grey35", lwd = 4) +
   tm_shape(fwlrt_line) + tm_lines(col = "grey", lwd = 4) +
   tm_shape(fwlrt_stops) + tm_dots(size = .5, fill = "grey") +
-  tm_shape(fwlrt_stops) + tm_dots(size = .15, fill = "white") 
+  tm_shape(fwlrt_stops) + tm_dots(size = .15, fill = "white")
 ```
 
 ### Build Network
