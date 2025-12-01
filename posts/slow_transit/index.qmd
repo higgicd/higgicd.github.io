@@ -185,7 +185,7 @@ OK, let's see what we are working with by making a map of population counts arou
 
 ```{r}
 #| label: fig-pop_density
-#| fig-cap: "Population Densities (2021) for DAs in the City of Toronto"
+#| fig-cap: "Population Counts (2021) for DAs in the City of Toronto"
 #| code-fold: true
 #| warning: false
 fwlrt_line_buffer <- fwlrt_line |> 
