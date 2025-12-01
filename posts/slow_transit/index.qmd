@@ -433,7 +433,7 @@ Nevertheless, I will caution that this is comparing the transit _networks_ acros
 
 ## Faster Finch
 
-For what it is worth, what if the Finch West LRT was operating faster? Again, the milestone testing had the travel time along the line down to about 24 minutes, or an average travel speed of 18kph. How would the accessibility results change if Line 6 was operating at this speed? Faster speeds generally mean more things should be accessible within a given travel time. We can test this by manipulating the GTFS files to make the LRT faster and building a new network for routing. 
+For what it is worth, what if the Finch West LRT was operating faster? Again, the milestone testing had the travel time along the line down to about 34 minutes, or an average travel speed of 18kph. How would the accessibility results change if Line 6 was operating at this speed? Faster speeds generally mean more things should be accessible within a given travel time. We can test this by manipulating the GTFS files to make the LRT faster and building a new network for routing. 
 
 First, we will create a new network folder (with `_ff` for "faster Finch") and copy over the OSM data:
 
