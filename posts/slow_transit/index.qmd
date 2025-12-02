@@ -256,7 +256,7 @@ Then build the network using {r5r}:
 ttc_prepost_network <- r5r::build_network(data_path = ttc_prepost_network_path)
 ```
 
-## Pre- and Post-Accessibility
+## Pre- and Post- Accessibility
 ### Travel Times
 
 How is Line 6 performing in terms of travel times? With the network built, let's try some simple routes between Humber College and Finch West subway station at 8:00:00 AM on a typical Tuesday in December to see the difference in travel times from 2018 versus 2025 with the Finch West LRT open:
@@ -337,7 +337,7 @@ Based on this, it does look like the LRT (yes it is labelled as a `TRAM` in the 
 
 ### Accessibility Analysis
 
-Accessibility analysis can give us a better idea of how these travel times might be impacting the potential to reach destinations using the LRT. Let's examine any differences across the pre-construction and now with the LRT in the network. I will measure accessibility as the number of jobs that can be reached using transit with the same log-logistic impedance function from [my previous post](https://higgicd.github.io/posts/accessibility_analysis/). This impedance function is calibrated to commuting flows by transit and places less weight on destinations that are farther away. 
+Accessibility analysis can give us a better idea of how these travel times might be impacting the potential to reach destinations using the LRT. Let's examine any differences across the pre-construction period and now with the LRT in the network. I will measure accessibility as the number of jobs that can be reached using transit with the same log-logistic impedance function from [my previous post](https://higgicd.github.io/posts/accessibility_analysis/). This impedance function is calibrated to commuting flows by transit and places less weight on destinations that are farther away. 
 
 Remember that {r5r} does take service frequency into account in these calculations by running the travel time matrix over a time window and taking the median travel time [see vignette](https://ipeagit.github.io/r5r/articles/time_window.html). To capture service frequency, I will set this time window to 60 minutes so that we analyze access over the 8:00 AM to 9:00 AM time frame.
 
@@ -390,7 +390,7 @@ access_post <- r5r::travel_time_matrix(
   rename(access_post = access)
 ```
 
-Now join the results back to the DBs and calculate the change in access across the pre- and post-accessibility scenarios:
+Now join the results back to the DBs and calculate the change in access across the pre- and post- accessibility scenarios:
 
 ```{r}
 #| label: calculate pre post access change
@@ -429,7 +429,9 @@ tm_shape(census_data_db, bbox = fwlrt_line_buffer) + tm_polygons(col = "grey99",
 
 Interesting! The results in @fig-prepost_access_change show quite a few DBs gained in access by up to about 17\% with the LRT relative to the network in late 2018. However, quite a few DBs also lose access with the percentage change reaching up to about -21\%. This is obviously not a great result -- the addition of "rapid transit" along the corridor, ostensibly to replace a bus that is often bogged down in traffic, does not stand out as an accessibility "home run" with strictly positive gains in this analysis.
 
-Nevertheless, I will caution that this is comparing the transit _networks_ across 2018 and now late 2025. There could be additional service changes elsewhere in the network that may be contributing to these results, such as slow zones on the subway. Moreover, these are scheduled services and the travel times along particular routes may be adjusted over GTFS releases to better reflect observed travel times. 
+::: {.callout-note}
+I will caution that this is comparing the transit _networks_ across 2018 and now late 2025. There could be additional service changes elsewhere in the network that may be contributing to these results, such as slow zones on the subway. Moreover, these are scheduled services and the travel times along particular routes may be adjusted over GTFS releases to better reflect observed travel times. 
+:::
 
 ## Faster Finch
 
@@ -447,9 +449,11 @@ fs::file_copy(
 )
 ```
 
-One way to speed up a service is to use the {gtfstools} package, which as limited functions for editing GTFS files. One of these functions is `set_trip_speed()`, which changes the speeds of the different trips made along a transit route. 
+One way to speed up a service is to use the {gtfstools} package, which has limited functions for editing GTFS files. One of these functions is `set_trip_speed()`, which changes the speeds of the different trips made along a transit route. 
 
+::: {.callout-note}
 My note of caution is that this is a very simplified approach limited to changing the end-to-end travel speed of the line and letting the network router interpolate the intermediate stop times. In the original data, stop times are populated along the entire route and reflect some slower speed segments. That original granularity is lost in this approach and some stations are going to overly benefit in this simulation.
+:::
 
 To change the speeds, we need to read in the late 2025 GTFS files into R and collect all the trips made by Line 6 into a list:
 
